@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Certified Appsec Practitioner &lpar;CAP&rpar; learning</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="certified-appsec-practitioner-cap-learning">Certified Appsec Practitioner (CAP) learning</h1>
+<ul>
+<li><a href="#certified-appsec-practitioner-cap-learning">Certified Appsec Practitioner (CAP) learning</a>
+<ul>
+<li><a href="#understanding-of-owasp-top-10-vulnerabilities">Understanding of OWASP Top 10 Vulnerabilities</a></li>
+</ul>
+</li>
+<li><a href="#a012021---broken-access-control">A01:2021 - Broken Access Control</a>
+<ul>
+<li><a href="#authorization-and-session-management-related-flaws">Authorization and Session Management related flaws</a>
+<ul>
+<li><a href="#detecci%C3%B3n">Detección</a></li>
+<li><a href="#recomendaciones">Recomendaciones</a></li>
+<li><a href="#ataques-relacionados-con-fallos-de-autenticaci%C3%B3n-y-autorizaci%C3%B3n">Ataques relacionados con fallos de autenticación y autorización</a>
+<ul>
+<li><a href="#insecure-direct-object-reference-idor">Insecure Direct Object Reference (IDOR)</a></li>
+<li><a href="#privilege-escalation">Privilege Escalation</a></li>
+<li><a href="#parameter-manipulation-attacks">Parameter Manipulation attacks</a></li>
+<li><a href="#securing-cookies-session-hijaking">Securing Cookies (Session Hijaking)</a></li>
+</ul>
+</li>
+<li><a href="#referencias">Referencias</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#a022021---cryptographic-failures">A02:2021 - Cryptographic failures</a>
+<ul>
+<li><a href="#encoding-encryption-and-hashing">Encoding, Encryption and Hashing</a>
+<ul>
+<li><a href="#codificaci%C3%B3n">Codificación</a>
+<ul>
+<li><a href="#ascii">ASCII</a></li>
+<li><a href="#iso-8859">ISO-8859</a></li>
+<li><a href="#unicode">Unicode</a></li>
+</ul>
+</li>
+<li><a href="#cifrado">Cifrado</a></li>
+<li><a href="#hashing">Hashing</a></li>
+<li><a href="#referencias-1">Referencias</a></li>
+</ul>
+</li>
+<li><a href="#tls-security">TLS security</a>
+<ul>
+<li><a href="#tls-certificate-misconfiguration">TLS Certificate Misconfiguration</a>
+<ul>
+<li><a href="#deshabilitar-versiones-de-ssl-y-tls-antiguas">Deshabilitar versiones de SSL y TLS antiguas</a></li>
+<li><a href="#uso-de-una-suite-de-cifrado-correcta">Uso de una suite de cifrado correcta</a></li>
+<li><a href="#tama%C3%B1o-de-la-clave-privada-rsa">Tamaño de la clave privada RSA</a></li>
+<li><a href="#firma-del-certificado">Firma del certificado</a></li>
+<li><a href="#hsts">HSTS</a></li>
+</ul>
+</li>
+<li><a href="#symmetric-and-asymmetric-ciphers">Symmetric and Asymmetric Ciphers</a>
+<ul>
+<li><a href="#cifrado-sim%C3%A9trico">Cifrado simétrico</a></li>
+<li><a href="#cifrado-asim%C3%A9trico">Cifrado asimétrico</a></li>
+</ul>
+</li>
+<li><a href="#referencias-2">Referencias</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#a032021---injection">A03:2021 - Injection</a>
+<ul>
+<li><a href="#input-validation-mechanisms">Input Validation Mechanisms</a>
+<ul>
+<li><a href="#validaci%C3%B3n-de-entradas-de-texto">Validación de entradas de texto</a>
+<ul>
+<li><a href="#procedimiento">Procedimiento</a></li>
+<li><a href="#blacklisting--block-list">Blacklisting / Block list</a></li>
+<li><a href="#whitelisting--allow-list">Whitelisting / Allow list</a></li>
+<li><a href="#validaci%C3%B3n-de-texto-unicode-de-forma-libre">Validación de texto Unicode de forma libre</a></li>
+<li><a href="#expresiones-regulares">Expresiones regulares</a></li>
+<li><a href="#uso-de-validadores-en-programaci%C3%B3n">Uso de validadores en programación</a></li>
+</ul>
+</li>
+<li><a href="#validaci%C3%B3n-de-ficheros-de-entrada">Validación de ficheros de entrada</a>
+<ul>
+<li><a href="#carga-del-fichero">Carga del fichero</a></li>
+<li><a href="#almacenamiento-del-fichero">Almacenamiento del fichero</a></li>
+<li><a href="#procesamiento-de-un-fichero-subido">Procesamiento de un fichero subido</a></li>
+</ul>
+</li>
+<li><a href="#references">References</a></li>
+</ul>
+</li>
+<li><a href="#cross-site-scripting">Cross-Site Scripting</a>
+<ul>
+<li><a href="#tipos-de-xss">Tipos de XSS</a>
+<ul>
+<li><a href="#reflejado">Reflejado</a></li>
+<li><a href="#almacenado">Almacenado</a></li>
+<li><a href="#basado-en-dom">Basado en DOM</a></li>
+</ul>
+</li>
+<li><a href="#detecci%C3%B3n-1">Detección</a></li>
+<li><a href="#ejemplo-de-c%C3%B3digo-vulnerable">Ejemplo de código vulnerable</a></li>
+<li><a href="#prevenci%C3%B3n">Prevención</a>
+<ul>
+<li><a href="#content-security-policy-csp">Content Security Policy (CSP)</a></li>
+<li><a href="#cabecera-x-xss-protection">Cabecera X-XSS-Protection</a></li>
+</ul>
+</li>
+<li><a href="#referencias-3">Referencias</a></li>
+</ul>
+</li>
+<li><a href="#sql-injection">SQL Injection</a>
+<ul>
+<li><a href="#tipos-de-sqli">Tipos de SQLi</a></li>
+<li><a href="#detecci%C3%B3n-2">Detección</a></li>
+<li><a href="#ejemplo-de-c%C3%B3digo-vulnerable-1">Ejemplo de código vulnerable</a></li>
+<li><a href="#prevenci%C3%B3n-1">Prevención</a></li>
+<li><a href="#referencias-4">Referencias</a></li>
+</ul>
+</li>
+<li><a href="#otras-vulnerabilidades-de-inyecci%C3%B3n">Otras vulnerabilidades de inyección</a></li>
+</ul>
+</li>
+<li><a href="#a042021---insecure-design">A04:2021 - Insecure design</a>
+<ul>
+<li><a href="#prevenci%C3%B3n-2">Prevención</a></li>
+</ul>
+</li>
+<li><a href="#a052021---security-misconfigurations">A05:2021 - Security Misconfigurations</a>
+<ul>
+<li><a href="#security-best-practices-and-hardening-mechanisms">Security Best Practices and Hardening Mechanisms.</a>
+<ul>
+<li><a href="#same-origin-policy">Same Origin Policy</a>
+<ul>
+<li><a href="#cors--cross-origin-resource-sharing">CORS  (Cross-Origin Resource Sharing)</a></li>
+</ul>
+</li>
+<li><a href="#security-headers">Security Headers</a></li>
+<li><a href="#referencias-5">Referencias</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#a062021---vulnerable-and-outdated-components">A06:2021 - Vulnerable and Outdated Components</a>
+<ul>
+<li><a href="#prevenci%C3%B3n-3">Prevención</a></li>
+</ul>
+</li>
+<li><a href="#a072021---identification-and-authentication-failures">A07:2021 - Identification and Authentication Failures</a>
+<ul>
+<li><a href="#authentication-related-vulnerabilities">Authentication related Vulnerabilities</a>
+<ul>
+<li><a href="#brute-force-attacks">Brute force Attacks</a>
+<ul>
+<li><a href="#prevenci%C3%B3n-4">Prevención</a></li>
+</ul>
+</li>
+<li><a href="#password-storage-and-password-policy">Password Storage and Password Policy</a>
+<ul>
+<li><a href="#password-storage-almacenamiento-de-contrase%C3%B1as">Password Storage (Almacenamiento de Contraseñas)</a>
+<ul>
+<li><a href="#prevenci%C3%B3n-5">Prevención</a></li>
+</ul>
+</li>
+<li><a href="#password-policy-pol%C3%ADtica-de-contrase%C3%B1as">Password Policy (Política de Contraseñas)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#a082021---software-and-data-integrity-failures">A08:2021 - Software and Data Integrity Failures</a>
+<ul>
+<li><a href="#prevenci%C3%B3n-6">Prevención</a></li>
+</ul>
+</li>
+<li><a href="#a092021--security-logging-and-monitoring-failures">A09:2021 – Security Logging and Monitoring Failures</a>
+<ul>
+<li><a href="#prevenci%C3%B3n-7">Prevención</a></li>
+</ul>
+</li>
+<li><a href="#a102021--server-side-request-forgery-ssrf">A10:2021 – Server-Side Request Forgery (SSRF)</a>
+<ul>
+<li><a href="#server-side-request-forgery">Server-Side Request Forgery</a>
+<ul>
+<li><a href="#ejemplo-de-c%C3%B3digo-vulnerable-2">Ejemplo de código vulnerable</a></li>
+<li><a href="#prevenci%C3%B3n-8">Prevención</a></li>
+<li><a href="#referencias-6">Referencias</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#otras-categorias-importantes">Otras categorias importantes</a>
+<ul>
+<li><a href="#cross-site-request-forgery">Cross-Site Request Forgery</a>
+<ul>
+<li><a href="#detecci%C3%B3n-3">Detección</a></li>
+<li><a href="#ejemplo-de-c%C3%B3digo-vulnerable-3">Ejemplo de código vulnerable</a></li>
+<li><a href="#prevenci%C3%B3n-9">Prevención</a>
+<ul>
+<li><a href="#tokens-anti-csrf">Tokens anti-CSRF</a></li>
+<li><a href="#cookies-strict-samesite">Cookies Strict SameSite</a></li>
+</ul>
+</li>
+<li><a href="#referencias-7">Referencias</a></li>
+</ul>
+</li>
+<li><a href="#xml-external-entity-attack">XML External Entity attack</a>
+<ul>
+<li><a href="#detecci%C3%B3n-4">Detección</a></li>
+<li><a href="#ejemplo-de-c%C3%B3digo-vulnerable-4">Ejemplo de código vulnerable</a></li>
+<li><a href="#prevenci%C3%B3n-10">Prevención</a></li>
+<li><a href="#referencias-8">Referencias</a></li>
+</ul>
+</li>
+<li><a href="#insecure-file-uploads-local-file-inclusion--path-traversal">Insecure File Uploads (Local File Inclusion &amp; Path Traversal)</a>
+<ul>
+<li><a href="#detecci%C3%B3n-5">Detección</a></li>
+<li><a href="#protecciones-d%C3%A9biles">Protecciones débiles</a>
+<ul>
+<li><a href="#listas-negras-de-extensiones">Listas negras de extensiones</a></li>
+<li><a href="#listas-blancas-de-extensiones">Listas blancas de extensiones</a></li>
+<li><a href="#validaci%C3%B3n-de-la-cabecera-content-type">Validación de la cabecera Content-Type</a></li>
+<li><a href="#usar-un-detector-de-tipo-de-archivo">Usar un detector de tipo de archivo</a></li>
+</ul>
+</li>
+<li><a href="#ejemplo-de-c%C3%B3digo-vulnerable-5">Ejemplo de código vulnerable</a></li>
+<li><a href="#recomendaci%C3%B3n">Recomendación</a>
+<ul>
+<li><a href="#cabecera-x-content-type-options">Cabecera X-Content-Type-Options</a></li>
+</ul>
+</li>
+<li><a href="#referencias-9">Referencias</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="understanding-of-owasp-top-10-vulnerabilities">Understanding of OWASP Top 10 Vulnerabilities</h2>
+<p>El OWASP Top 10 de vulnerabilidades de 2021 ha sido el siguiente:</p>
+<p><img src="file:///c:\Users\julian.fonticoba\workspace\Apuntes-Certified_AppSec_Partitioner-CAP\assets\OWASP-Top-10-vulnerabilities-for-2021.jpg" 
+        alt="Top 10" 
+        width="70%" 
+        height="70%" 
+        style="display: block; margin: 0 auto" /></p>
+<h1 id="a012021---broken-access-control">A01:2021 - Broken Access Control</h1>
+<h2 id="authorization-and-session-management-related-flaws">Authorization and Session Management related flaws</h2>
+<p>Las vulnerabilidades relacionadas con la autenticación y gestión de sesiones permiten a un atacante poder tener acceso a un sistema o aplicación sin tener una cuenta valida para hacerlo.</p>
+<p><img src="file:///c:\Users\julian.fonticoba\workspace\Apuntes-Certified_AppSec_Partitioner-CAP\assets\Broken-Access-Control-Attacks.png" 
+        alt="BAC" 
+        width="70%" 
+        height="70%" 
+        style="display: block; margin: 0 auto" /></p>
+<h3 id="detección">Detección</h3>
+<p>Puede haber debilidades de autenticación si la aplicación:</p>
+<ul>
+<li>Permite ataques automatizados como el relleno de credenciales, donde el atacante tiene una lista de nombres de usuario y contraseñas válidas.</li>
+<li>Permite la fuerza bruta u otros ataques automatizados.</li>
+<li>Permite contraseñas predeterminadas, débiles o conocidas, como &quot;password&quot; o &quot;admin/admin&quot;.</li>
+<li>Utiliza una recuperación de credencial débil o ineficaz, tales como respuestas basadas en el conocimiento, que no se pueden hacer seguras.</li>
+<li>Usa contraseñas en texto plano o débilmente cifrada.</li>
+<li>No existe autenticación multifactor o está débilmente implementado.</li>
+<li>Expone los identificaciones de sesión en la URL.</li>
+<li>No rota el ID de sesión después de un inicio de sesión exitoso.</li>
+<li>No invalida correctamente las identificaciones de sesión. Las sesiones de los usuarios o los tokens de autenticación (particularmente los tokens de inicio de sesión (SSO)) no están debidamente invalidados durante el logout o un período de inactividad.</li>
+</ul>
+<p>Para detectar vulnerabilidades en la autenticación podemos hacer uso de herramientas como:</p>
+<ul>
+<li>ZAP o BurpSuite: proxies que permiten analizar las solicitudes y respuestas HTTP, cookies de sesión, parametros, campos ocultos...</li>
+<li>Hydra, Ncrack o Medusa: probar ataques de fuerza bruta o de diccionarios</li>
+<li>Cookie Cadger: interceptar, manipular o capturar los identificadores de sesión, como cookies de sesión.</li>
+</ul>
+<h3 id="recomendaciones">Recomendaciones</h3>
+<ul>
+<li>Siempre que sea posible, implementar autenticación multifactor para prevenir ataques automatizados, como fuerza bruta o reutilización de credenciales robadas.</li>
+<li>Mantener una gestión segura de secretos, particularmente para los usuarios de administración.</li>
+<li>Implemente comprobaciones de contraseñas débiles, como probar contraseñas nuevas o cambiadas contra una lista de las 10000 peores contraseñas.</li>
+<li>Alinear la longitud de la contraseña, la complejidad y las políticas de rotación con las directrices de NIST.</li>
+<li>Asegúrese de que las vías de registro, recuperación de credenciales y API se aseguran contra los ataques de enumeración de cuentas mediante el uso de los mismos mensajes para todos los resultados.</li>
+<li>Límite o retraso de intentos de inicio de sesión fallidos. Registrar todos los fallos y alertar a los administradores cuando se detectan relleno de credenciales, fuerza bruta u otros ataques.</li>
+<li>Utilice un gestor de sesión del lado del servidor, seguro y integrado que genere un nuevo ID de sesión aleatorio con alta entropía después de login. Las identificaciones de sesión no deben estar en la URL, almacenarse de forma segura e invalidar después de logout.</li>
+</ul>
+<h3 id="ataques-relacionados-con-fallos-de-autenticación-y-autorización">Ataques relacionados con fallos de autenticación y autorización</h3>
+<h4 id="insecure-direct-object-reference-idor">Insecure Direct Object Reference (IDOR)</h4>
+<p><strong>Insecure direct object reference (IDOR)</strong> es un ataque utilizado por los atacantes que permite el acceso a datos o recursos que deberían de permanecer ocultos para el usuario.</p>
+<p>IDOR es una vulnerabilidad que se produce cuando la aplicación web no comprueba correctamente la autorización a un recurso protegido.</p>
+<p>Los ataques de IDOR se pueden desglosar en tres tipos distintos:</p>
+<ul>
+<li>Uso de un identificador débil: Una aplicacion usa identificadores débiles y previsibles, como números secuenciales, para acceder a un recurso.</li>
+<li>Asignación de permisos incorrectos: Una aplicación asigna los permisos incorrectos a un usuario, el cual no está autorizado a acceder.</li>
+<li>Control de acceso inadecuado: Una aplicación no comprueba la identidad del usuario antes de permitir el acceso a un recurso.</li>
+</ul>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>Un ejemplo sería si una aplicación usa un identificador numérico predecible para el usuario para acceder a su cuenta bancaria, lo cual permite a otro usuario manipular la URL y acceder a otra cuenta que no es suya.</p>
+</div>
+<p><img src="file:///c:\Users\julian.fonticoba\workspace\Apuntes-Certified_AppSec_Partitioner-CAP\assets\IDOR.jpg" 
+        alt="Hashing" 
+        width="70%" 
+        height="70%" 
+        style="display: block; margin: 0 auto" /></p>
+<p>Para mitigar un IDOR se recomienda:</p>
+<ul>
+<li>Usar un identificador robusto: los identificadores deben de ser fuertes y dificiles de adivinar, con caracteres aleatorios y no secuenciales.</li>
+<li>Asignación de permisos correcta: los permisos del usuario están correctamente otorgados.</li>
+<li>Implementar controles de acceso robustos: se debe de garantizar que los usuarios solo puedan acceder a los recursos que deben de acceder.</li>
+<li>Aplicar políticas de seguridad en las entradas: validar las entradas de usuarios y garantizar que la aplicación compruebe correctamente la referencia al objeto.</li>
+</ul>
+<h4 id="privilege-escalation">Privilege Escalation</h4>
+<p>La <strong>escalada de privilegios</strong> es el proceso por el que se explota una vulnerabilidad de un sistema con el objetivo de obtener un mayor nivel de permisos en el mismo para una cuenta de un usuario existente. Para hacer esto se pueden usar diferentes métodos, desde usar una puerta trasera, aprovechar un error del sistema o atacando una contraseña débil del administrador.</p>
+<p>Existen principalmente 2 métodos de escalada de privilegios:</p>
+<ul>
+<li>Vertical: un usuario con privilegios limitados puede acceder a privilegios más altos de lo que realmente tiene permitido. P.e: un empleado con acceso a datos confidenciales puede usar ese acceso para obtener los mismos privilegios que un empleado de nivel superior, como un gerente.</li>
+<li>Horizontal: un usuario con un conjunto de privilegios es capaz de acceder a otros privilegios de otro usuario. P.e: un empleado de bajo nivel puede explotar una vulnerabilidad en el sistema para obtener privilegios administrativos.</li>
+</ul>
+<p>Tipos comunes de técnicas o métodos de escalada de privilegios:</p>
+<ul>
+<li>Uso de ingeniería social.</li>
+<li>Ataques pass-the-hash o rainbow tables: tiene como objetivo hacerse pasar por un usuario mediante el uso de un hash de contraseña robado para crear una nueva sesión.</li>
+<li>Vulnerabilidades: explotación de vulnerabilidades en el software y los sistemas operativos</li>
+<li>Configuraciones incorrectas: contraseñas débiles, servicios de red no seguros, puertos abiertos, fallas auténticas y otros sistemas mal configurados.</li>
+<li>Exploits de kernel: en esta técnica, el atacante explota vulnerabilidades de día cero en el kernel del sistema operativo para escalar sus privilegios.</li>
+</ul>
+<p>Para mitigar la escalada de privilegios se recomienda:</p>
+<ul>
+<li>Implementar protocolos de autenticación y autorización fuertes</li>
+<li>Mantener el sistema actualizado con los últimos parches de seguridad y correctamente configurado</li>
+<li>Reducir el acceso físico al sistema</li>
+<li>Utilizar el mínimo privilegio</li>
+</ul>
+<h4 id="parameter-manipulation-attacks">Parameter Manipulation attacks</h4>
+<p>Los <strong>ataques de manipulación de parámetros</strong> son un conjunto de vulnerabilidades web que modifican el comportamiento normal de la aplicación debido al uso de datos no esperados en ciertos parámetros de la URL.</p>
+<p>Existen varios ataques de manipulación de parámetros, donde destacan el SQL injection o el XSS. Aún así, existen muchos otros tal vez menos conocidos pero muy relevantes:</p>
+<ul>
+<li><strong>LDAP injection</strong>: un atacante inserta comandos maliciosos en consultas LDAP (Lightweight Directory Access Protocol) para comprometer la integridad de la base de datos o acceder a información no autorizada. Al explotar fallos en la validación de datos de entrada, el atacante puede manipular las consultas LDAP y realizar acciones no permitidas. Para prevenirlo, es esencial validar y filtrar adecuadamente las entradas del usuario, utilizando funciones de escape o parámetros preparados para evitar la ejecución no deseada de comandos LDAP. Además, se recomienda implementar políticas de seguridad robustas y actualizaciones regulares del software.</li>
+<li><strong>HTML injection o Code injection</strong>: un atacante inserta código malicioso en una aplicación para ejecutar operaciones no autorizadas. En &quot;Code injection,&quot; se manipulan lenguajes de programación, como Python o JavaScript, para ejecutar comandos indeseados. Para prevenirlo, se deben validar y limpiar las entradas del usuario, y utilizar funciones de escape adecuadas. En &quot;HTML injection,&quot; los atacantes insertan código HTML no seguro, pudiendo robar datos o realizar acciones no autorizadas en el navegador del usuario. Para prevenirlo, se debe validar y escapar correctamente las entradas, y preferir el uso de funciones seguras, como <code>htmlspecialchars</code> en PHP.</li>
+<li><strong>Buffer overflow</strong>:  un atacante manipula un programa para escribir datos más allá del límite asignado a un búfer en la memoria, lo que puede resultar en la ejecución de código no autorizado. Esto puede llevar a un control total del sistema. Para prevenirlo, es fundamental validar y limitar la entrada de datos, utilizar funciones seguras e implementar medidas de protección de memoria.</li>
+<li><strong>Session Hijacking:</strong> un atacante consigue la información de sesión de un usuario para acceder no autorizadamente a una cuenta. Esto puede ocurrir mediante el uso de técnicas como el &quot;session sniffing&quot; o el robo de cookies. Para prevenirlo, es crucial utilizar conexiones seguras mediante el protocolo HTTPS, implementar cookies seguras y <code>httponly</code>, y renovar las sesiones periódicamente. Además, se recomienda educar a los usuarios sobre prácticas seguras de autenticación, como cerrar sesión después de su uso y evitar conexiones a redes Wi-Fi públicas no seguras.</li>
+<li><strong>Directory Path Traversal:</strong> un atacante aprovecha la falta de restricciones en la manipulación de rutas de directorios para acceder a archivos o directorios fuera del alcance previsto. Esto puede llevar a la revelación no autorizada de datos sensibles o ejecución de código malicioso. Para prevenirlo, se deben validar y limpiar cuidadosamente las entradas del usuario, limitar el acceso a rutas específicas, y utilizar listas blancas en lugar de listas negras para permitir solo las rutas conocidas y seguras. Implementar permisos adecuados también es esencial para limitar accesos no autorizados.</li>
+</ul>
+<h4 id="securing-cookies-session-hijaking">Securing Cookies (Session Hijaking)</h4>
+<p>Las cookies son el punto débil del usuario, ya que es donde se almacena en muchos casos información sensible que la aplicación necesita que el cliente mantenga en su entorno.</p>
+<p>Uno de los tipos de cookies más sensibles son las <strong>cookies de sesión</strong>, que son las que permiten mantener la sesión iniciada con una aplicación en un periodo de tiempo.</p>
+<p><img src="file:///c:\Users\julian.fonticoba\workspace\Apuntes-Certified_AppSec_Partitioner-CAP\assets\how-session-hijacking-works-1024x653.png" 
+        alt="Hashing" 
+        width="70%" 
+        height="70%" 
+        style="display: block; margin: 0 auto" /></p>
+<p>Ciertas medidas relevantes para mantener seguras las cookies son:</p>
+<ul>
+<li>Cifrar las cookies, evitando que los atacantes tengan acceso a las mismas</li>
+<li>Mantener una expiración adecuada de la cookie, no demasiado larga</li>
+<li>Evitar los ataques de XSS via cabecera CSP y sanitización de código</li>
+</ul>
+<p>Además de las medidas anteriores, es necesario establecer una buena configuración de las cookies:</p>
+<ul>
+<li>Configura tus cookies con las opciones <code>Secure</code> y <code>HttpOnly</code>.
+<ul>
+<li><strong>Secure</strong>: Garantiza que las cookies solo se envíen a través de conexiones seguras (HTTPS)</li>
+<li><strong>HttpOnly</strong>: Evita que las cookies sean accesibles a través de scripts del lado del cliente, lo que reduce el riesgo de ataques XSS.</li>
+</ul>
+</li>
+<li>Usa el atributo <code>SameSite</code> para evitar ataques de solicitud entre sitios (CSRF)
+<ul>
+<li><strong>SameSite=Strict</strong>: La cookie solo se enviará en una solicitud si la solicitud proviene del mismo sitio que la página de destino.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-http"><span class="hljs-attribute">Set-Cookie</span><span class="hljs-punctuation">: </span>nombreCookie=valorCookie; Secure; HttpOnly; SameSite=Strict; Expires=Sun, 31 Jan 2024 23:59:59 GMT
+</code></pre>
+<h3 id="referencias">Referencias</h3>
+<p><a href="https://owasp.org/www-project-top-ten/2017/A2_2017-Broken_Authentication">A2:2017-Broken Authentication</a></p>
+<p><a href="https://www.linkedin.com/advice/1/how-do-you-test-broken-authentication-session">¿Cómo se prueba la autenticación rota y la administración de sesiones en aplicaciones web?</a></p>
+<h1 id="a022021---cryptographic-failures">A02:2021 - Cryptographic failures</h1>
+<h2 id="encoding-encryption-and-hashing">Encoding, Encryption and Hashing</h2>
+<h3 id="codificación">Codificación</h3>
+<p>La codificación de caracteres (character encoding) es el método que permite convertir un carácter de un lenguaje natural (alfabeto) en un símbolo de otro sistema de representación, como un número, un símbolo o una secuencia de pulsos eléctricos en un sistema electrónico, aplicando una serie de normas o reglas de codificación.</p>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p>La codificación en si <strong>no implica seguridad</strong>, simplemente permite definir tablas que indiquen el carácter en el lenguaje natural y su correspondencia en el lenguaje del sistema informático.</p>
+</div>
+<h4 id="ascii">ASCII</h4>
+<p>El conjunto de caracteres ASCII publicado por el ANSI (American National Standard Code for Information Interchange) como estándar en 1967.</p>
+<p>Se diseñó en un principio utilizando solamente 7 bits, para dejar el octavo bit para la paridad (control de errores), por lo que solamente puede representar 128 caracteres, suficientes para incluir mayúsculas y minúsculas del abecedario inglés, además de cifras, puntuación y algunos caracteres de control.</p>
+<h4 id="iso-8859">ISO-8859</h4>
+<p>La norma <strong>ISO-8859 (o ASCII extendido)</strong> utiliza 8 bits y, por tanto, permite 256 caracteres. Estos son suficientes para abarcar los caracteres de un lenguaje en concreto.</p>
+<p>En ellos, los primeros 128 caracteres son los mismos de la tabla ASCII original y los 128 siguientes se corresponden a símbolos extra añadidos.</p>
+<p>Sin embargo, 8 bits siguen siendo insuficientes para codificar todos los alfabetos conocidos, por lo que cada zona tiene que usar su propia especialización de la norma ISO 8859. El alfabeto español es el &quot;ISO 8859-1 (Latin-1) Europa occidental&quot;.</p>
+<h4 id="unicode">Unicode</h4>
+<p>Como solución a los problemas de que ningún conjunto de caracteres recogía todos los lenguajes mundiales, desde 1991 se ha acordado internacionalmente crear y utilizar la norma Unicode.</p>
+<p>Unicode asigna un código a cada uno de los más de cincuenta mil símbolos que posee, los cuales abarcan todos los alfabetos europeos, ideogramas chinos, japoneses, coreanos, muchas otras formas de escritura, lenguas muertas y más de un millar de símbolos especiales.</p>
+<p>Son tres las formas de codificación bajo el nombre UTF:</p>
+<ul>
+<li>UTF-8 Codificación orientada a byte con símbolos de longitud variable. La más utilizada pero la más complicada para el ordenador.</li>
+<li>UTF-16 Codificación de 16 bits de longitud variable optimizada para la representación del plano básico multilingüe (BMP).</li>
+<li>UTF-32 Codificación de 32 bits de longitud fija, y la más sencilla de las tres.</li>
+</ul>
+<h3 id="cifrado">Cifrado</h3>
+<p>El cifrado es un método de protección que consiste en alterar los datos de un mensaje hasta hacerlos ilegibles. La idea es que un emisor cifre el mensaje y que solo pueda ser descifrado por el receptor, usando la misma clave (cifrado simétrico) o usando otra (cifrado asimétrico).</p>
+<p>Ver <a href="#symmetric-and-asymmetric-ciphers">Symmetric and Asymmetric Ciphers</a></p>
+<h3 id="hashing">Hashing</h3>
+<p>El <strong>hashing</strong> es el proceso de convertir una entrada de longitud variable en una salida de longitud fija, generalmente para propósitos de autenticación y seguridad de datos. Este proceso se realiza mediante una <strong>función hash</strong>, que crea un valor único, también conocido como hash, para cada entrada única, incluso si la diferencia es mínima.</p>
+<p>Los principios del hashing son:</p>
+<ul>
+<li><strong>Determinismo</strong>: La misma entrada siempre producirá el mismo hash.</li>
+<li><strong>Repidez</strong>: La función hash debe ser capaz de producir el hash en un tiempo relativamente corto.</li>
+<li><strong>Irreversible</strong>: Debería ser computacionalmente inviable generar la entrada original a partir de su hash</li>
+<li><strong>Impredecible</strong>: Un cambio mínimo en la entrada debería cambiar drásticamente el hash.</li>
+<li><strong>Resistencia a colisiones</strong>: Debería ser extremadamente difícil encontrar dos entradas diferentes que produzcan el mismo hash.</li>
+</ul>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p>Dados todos estos principios, especialmente <em>irreversible</em>, podemos encontrar la gran diferencia con el cifrado. El cifrado busca que el mensaje sea ilegible por todo el mundo a excepción del propietario de la clave, que podría descifrarlo. En las funciones hash, no debería ser posible llegar desde un mensaje hasheado al original.</p>
+</div>
+<p>El hashing es ampliamente usado para verificar la integridad de recursos en el momento de transmisión de datos, almacenar contraseñas de forma segura, incrementar velocidades en las búsquedas y verificar las firmas digitales.</p>
+<p><img src="file:///c:\Users\julian.fonticoba\workspace\Apuntes-Certified_AppSec_Partitioner-CAP\assets\1200px-Cryptographic_Hash_Function.svg.png" 
+        alt="Hashing" 
+        width="70%" 
+        height="70%" 
+        style="display: block; margin: 0 auto" /></p>
+<p>Existen múltiples funciones hash, aunque las mas populares son:</p>
+<ul>
+<li><strong>MD5 (Message-Digest Algorithm 5)</strong>: es una función hash ampliamente utilizada que produce un valor hash de 128 bits. Aunque ha sido atacada y ya no se considera segura para su uso en aplicaciones de seguridad, sigue siendo ampliamente utilizada para fines de integridad de datos.</li>
+<li><strong>SHA-1 (Secure Hash Algorithm 1)</strong>: es una función hash de 160 bits que se utiliza ampliamente para verificar la integridad de los datos. Dado que se ha demostrado que es vulnerable a ataques de colisión, es insegura y no recomendada.</li>
+<li><strong>SHA-2</strong>: es una familia de funciones hash que incluye a SHA-224, SHA-256, SHA-384 y SHA-512. Estas funciones hash producen valores hash de 224, 256, 384 y 512 bits, respectivamente. Se consideran más seguras que MD5 y SHA-1 y se utilizan ampliamente en aplicaciones de seguridad.</li>
+<li><strong>SHA-3</strong>: es una familia de funciones hash creada como una alternativa a SHA-2. Incluye a SHA3-224, SHA3-256, SHA3-384, SHA3-512, SHAKE128 y SHAKE256. Estas funciones hash producen valores hash de diferentes longitudes y se consideran muy seguras</li>
+</ul>
+<h3 id="referencias-1">Referencias</h3>
+<p><a href="https://www.ticarte.com/contenido/que-es-la-codificacion-de-caracteres">Qué es la Codificación de Caracteres</a></p>
+<p><a href="https://www.hostingtg.com/blog/que-es-el-hashing/">Sobre el Hashing</a></p>
+<h2 id="tls-security">TLS security</h2>
+<p><strong>Transport Layer Security (TLS)</strong> es un protocolo criptográfico diseñado para proporcionar una conexión cifrada entre dos puntos, tradicionalmente un cliente y un servidor. El TLS se utiliza para asegurar la comunicación entre el navegador y el servidor, comunicaciones de correo electrónico, redes privadas virtuales (VPN), transferencias de archivos...</p>
+<p><img src="file:///c:\Users\julian.fonticoba\workspace\Apuntes-Certified_AppSec_Partitioner-CAP\assets\tls12_vs_tls13.png" 
+        alt="Hashing" 
+        width="70%" 
+        height="70%" 
+        style="display: block; margin: 0 auto" /></p>
+<p>Actualmente la versión de TLS más usada es TLS 1.2, aunque gradualmente se está implantando la versión de TLS 1.3, con cifrado asimétrico.</p>
+<h3 id="tls-certificate-misconfiguration">TLS Certificate Misconfiguration</h3>
+<h4 id="deshabilitar-versiones-de-ssl-y-tls-antiguas">Deshabilitar versiones de SSL y TLS antiguas</h4>
+<p>Dado que SSL/TLS son unos mecanismos de cifrado y que los recursos dentro de la computación avanzan cada día mas, es necesario mantener una versión de SSL/TLS segura que permita que la información cifrada entre el cliente y el servidor no pueda ser descifrada.</p>
+<p>Actualmente las versiones SSL 2.0 y 3.0 y TLS 1.0 y 1.1 ya no son seguras. Estas usaban cifrados simétricos para cifrar la conexión, por lo que podrían ser atacadas a través de ataques MITM, interceptando las comunicaciones. Además, estas no permitían el uso de protocolos de autenticación modernos, como curvas elípticas. Dado este motivo, el uso de versiones poco seguras permite que un atacante pueda descifrar la conexión entre el servidor y los clientes, obteniendo información personal y/o confidencial.</p>
+<p>La recomendación es el <strong>uso de TLS 1.2 o superior</strong>.</p>
+<h4 id="uso-de-una-suite-de-cifrado-correcta">Uso de una suite de cifrado correcta</h4>
+<p>El uso de un método criptográfico correcto en el cifrado es básico. En el momento de la negociación de la comunicación, el navegador web envía una lista de suites de cifrado de su preferencia y el servidor le responde con la seleccionada para mantener la comunicación. Es en ese momento donde el servidor debe elegir una de las suites de cifrado más robustas que el navegador acepte.</p>
+<p>El método más robusto a día de hoy es el uso de <strong>curvas elípticas o Elliptic Curve Diffie–Hellman (ECDH)</strong>.</p>
+<h4 id="tamaño-de-la-clave-privada-rsa">Tamaño de la clave privada RSA</h4>
+<p>A la hora de generar tu par de claves (clave privada y clave pública) con la que se generará el certificado de tu web, el tamaño de la clave RSA debe de ser de <strong>al menos 2048 bits</strong>. Actualmente la versión de 1024 bits es insegura.</p>
+<p>Al igual que para la clave RSA, el parámetro DH (DHE_RSA) también debe establecerse a 2048.</p>
+<h4 id="firma-del-certificado">Firma del certificado</h4>
+<p>La firma del certificado debe realizarse usando una función hash segura. Lo mínimo recomendable está en <strong>SHA-256</strong>.</p>
+<h4 id="hsts">HSTS</h4>
+<p><strong>HTTP Strict-Transport-Security (HSTS)</strong> es una característica de seguridad que permite a un sitio web indicar a los navegadores que sólo se debe comunicar con HTTPS en lugar de usar HTTP.</p>
+<p>Si un sitio web acepta una conexión a través de HTTP y redirecciona a HTTPS, el usuario en este caso podría inicialmente hablar a la versión no encriptada del sitio antes de ser redireccionado. Esto habilita el potencial ataque man-in-the-middle, donde el redireccionamiento podría ser aprovechado para enviar al usuario a un sitio malicioso en lugar de la versión segura.</p>
+<p>El encabezado <code>HTTP Strict Transport Security</code> permite a un sitio web informar al navegador que nunca cargue el sitio usando HTTP y que debe automáticamente convertir todos los intentos de acceso HTTP a HTTPS.</p>
+<pre><code>Strict-Transport-Security: max-age=&lt;expire-time&gt;
+</code></pre>
+<p>El parámetro max-age es el tiempo, en segundos, sobre el cual el navegador recuerda que solo es accesible via HTTPS. En cualquier momento que el encabezado Strict-Transport-Security sea entregado el navegador, este actualiza el tiempo de expiración para el sitio, así los sitios pueden refrescar su información y prevenir el tiempo de expiración.</p>
+<h3 id="symmetric-and-asymmetric-ciphers">Symmetric and Asymmetric Ciphers</h3>
+<h4 id="cifrado-simétrico">Cifrado simétrico</h4>
+<p>El <strong>cifrado simétrico</strong> es un paradigma criptográfico donde una única clave es utilizada tanto para cifrar como para descifrar datos. Este método se caracteriza por su eficiencia en términos de velocidad y recursos computacionales, ya que la misma clave se aplica en ambas direcciones del proceso criptográfico.</p>
+<p>La confidencialidad de la información se basa en la premisa de que las entidades comunicantes comparten de <strong>manera segura esta clave</strong>, permitiendo que solo ellas puedan acceder a la información cifrada.</p>
+<p><img src="file:///c:\Users\julian.fonticoba\workspace\Apuntes-Certified_AppSec_Partitioner-CAP\assets\imagen12.png" 
+        alt="Cifrado simetrico" 
+        width="70%" 
+        height="70%" 
+        style="display: block; margin: 0 auto" /></p>
+<p>Existen 2 tipos de cifrados simétricos:</p>
+<ul>
+<li>Cifrados de bloque: Los datos de entrada se dividen en bloques de un tamaño específico, de 64 o 128 bits. La operación de cifrado se realiza mediante una función matemática que involucra tanto los datos del bloque como una clave secreta, donde cada bloque depende del anterior, creando una cadena.</li>
+<li>Cifrados de flujo: Los datos de entrada se cifran de manera continua, bit a bit o byte a byte, a medida que se transmiten. Esta secuencia se combina con los datos originales mediante una operación lógica (como XOR) para producir la salida cifrada.</li>
+</ul>
+<p>Como ejemplos de cifrados simétricos:</p>
+<ul>
+<li><strong>AES (Advanced Encryption Standard):</strong> Es un método de cifrado simétrico ampliamente adoptado y vigente, tanto por su eficacia como por su seguridad comprobada. Pese a ser el mas utilizado, es importante que sea usado en el modo CTR, que es el más seguro. Uso de otros modos, especialmente ECB o CBC, hacen que el algoritmo no sea seguro.</li>
+<li><strong>DES (Data Encryption Standard):</strong> Aunque ahora es considerado inseguro debido a su corta longitud de clave, fue uno de los primeros estándares de cifrado.</li>
+<li><strong>3DES (Triple DES):</strong> Una mejora de DES que aplica el algoritmo DES tres veces en cada bloque de datos. Aunque más seguro que DES, AES es preferido en la actualidad.</li>
+<li><strong>Blowfish</strong>: Diseñado con énfasis en la velocidad y eficiencia, Blowfish utiliza bloques de datos de 64 bits y es adecuado para una variedad de aplicaciones.</li>
+<li><strong>RC4</strong>: Aunque inicialmente diseñado para el cifrado de flujo, también se ha utilizado como cifrado simétrico de bloque. Sin embargo, su seguridad ha sido cuestionada en los últimos años.</li>
+</ul>
+<h4 id="cifrado-asimétrico">Cifrado asimétrico</h4>
+<p>El <strong>cifrado asimétrico</strong> es un enfoque de cifrado que utiliza dos claves distintas usadas para descifrar y cifrar: <strong>clave privada y clave pública</strong>.</p>
+<p>En el cifrado asimétrico, la seguridad se basa en la complejidad matemática de ciertos algoritmos. Cuando alguien quiere enviar información de forma segura a otra persona, utiliza la clave pública del destinatario para cifrar los datos. Una vez que los datos están cifrados con la clave pública, solo la clave privada correspondiente del destinatario puede descifrarlos.</p>
+<p><img src="file:///c:\Users\julian.fonticoba\workspace\Apuntes-Certified_AppSec_Partitioner-CAP\assets\criptosistema_asimetrico.jpg" 
+        alt="Cifrado asimetrico" 
+        width="70%" 
+        height="70%" 
+        style="display: block; margin: 0 auto" /></p>
+<p>Un beneficio clave es que la clave pública puede ser compartida abiertamente sin comprometer la seguridad del sistema, ya que solo la clave privada asociada puede realizar el proceso inverso de descifrado, que es la que debe mantenerse en secreto.</p>
+<p>Aunque más lento y menos eficiente que el simétrico, este modelo de cifrado permite separar las claves, verificar autenticidad...</p>
+<p>Como ejemplos de cifrados asimétricos:</p>
+<ul>
+<li><strong>RSA (Rivest, Shamir y Adleman):</strong> Utiliza claves pública y privada para cifrar y descifrar. Su seguridad se basa en la dificultad de factorizar grandes números primos. Es el más usado y reconocido.</li>
+<li><strong>ECC (Criptografía de Curva Elíptica):</strong> Emplea propiedades matemáticas de curvas elípticas para cifrar y firmar digitalmente. Ofrece una gran seguridad con claves más cortas que otros métodos.</li>
+<li><strong>Protocolo Criptográfico Diffie-Hellman:</strong> Aunque es más comúnmente conocido como un protocolo de intercambio de claves, también puede considerarse un método de cifrado asimétrico. Permite a las dos partes acordar de forma segura una clave secreta compartida.</li>
+<li><strong>PGP</strong>: Utiliza un sistema híbrido que combina cifrado simétrico y asimétrico. Se utiliza comúnmente para asegurar correos electrónicos y archivos.</li>
+<li><strong>DSA (Algoritmo de Firma digital):</strong> Diseñado para firmar digitalmente información. Usa un par de claves para crear y verificar firmas digitales.</li>
+</ul>
+<h3 id="referencias-2">Referencias</h3>
+<p><a href="https://snelling.io/ssl/">Understanding SSL Misconfiguration</a></p>
+<p><a href="https://developer.mozilla.org/es/docs/Web/HTTP/Headers/Strict-Transport-Security">Strict-Transport-Security</a></p>
+<p><a href="https://www.ceupe.com/blog/cifrado-simetrico.html?dt=1707296074970">Cifrado simétrico: Qué es, ventajas, desventajas y cómo funciona</a></p>
+<p><a href="https://www.ceupe.com/blog/cifrado-asimetrico.html">Cifrado asimétrico: Qué es, ventajas, y funcionamiento</a></p>
+<h1 id="a032021---injection">A03:2021 - Injection</h1>
+<h2 id="input-validation-mechanisms">Input Validation Mechanisms</h2>
+<p>Los <strong>mecanismos de validación de entradas</strong> son técnicas que permiten garantizar que las entradas proporcionadas por un usuario o un sistema están debidamente formadas, evitando que los datos mal-formados se almacenen o procesen desencadenando un mal funcionamiento en el software.</p>
+<p>La validación de entradas debe de efectuarse <strong>lo antes posible</strong> en el flujo de datos del software, preferiblemente tan pronto como se reciban del exterior.</p>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p>La validación de la entrada no debe utilizarse como el método principal de prevención de XSS, SQL Injection y otros ataques, pero permite reducir el impacto considerablemente si se implementan de forma correcta.</p>
+</div>
+<h3 id="validación-de-entradas-de-texto">Validación de entradas de texto</h3>
+<h4 id="procedimiento">Procedimiento</h4>
+<p>La validación de la entrada debe aplicarse tanto a nivel sintáctico como semántico.</p>
+<ul>
+<li>La validación sintáctica debe hacer cumplir la sintaxis correcta: DNI, formato de fecha, formato de email...</li>
+<li>La validación semántica debe imponer la exactitud de sus valores en el contexto específico: fecha de inicio antes que la de fin, precio en un rango esperado, tarjeta de crédito realista...</li>
+</ul>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p>Los caracteres codificados han de ser también validados, filtrados y revisados.</p>
+</div>
+<h4 id="blacklisting--block-list">Blacklisting / Block list</h4>
+<p>El <strong>blacklisting</strong>, lista negra o lista de bloqueo define aquella lista o conjunto de caracteres que queremos filtrar de una entrada de texto ya que pueden presentar un problema de seguridad. Por ejemplo:</p>
+<ul>
+<li><code>&lt;</code> y <code>&gt;</code>, que puede permitir la inyección de scripts en JavaScript o inyección de código HTML</li>
+<li><code>'</code>, que puede permitir la inyección de consultas SQL</li>
+</ul>
+<p>Las listas de bloqueo son un método adecuado para prevenir la inserción de caracteres especiales, pero suele ser un método complicado de implementar y arriesgado si no se implementa correctamente el conjunto de caracteres necesario.</p>
+<h4 id="whitelisting--allow-list">Whitelisting / Allow list</h4>
+<p>El <strong>whitelisting</strong>, lista blanca o lista de permiso define aquella lista o conjunto de caracteres sobre la cual queremos dejar pasar los caracteres, filtrando de una entrada de texto los que no pertenecen a la lista ya que pueden presentar un problema de seguridad.</p>
+<p>Aunque es un método más sencillo que implementar que el anterior, sigue candente el riesgo de que, no implementándose de la forma correcta, pueda llegar a introducirse una entrada incorrecta.</p>
+<h4 id="validación-de-texto-unicode-de-forma-libre">Validación de texto Unicode de forma libre</h4>
+<p>Cuando el texto es un formato libre (p.e. descripción de un producto), el input es un campo difícil de validar debido al gran espacio de caracteres permitidos. En este tipo de campos, puede ser necesario el uso de caracteres potencialmente peligrosos, como <code>&lt;</code> o <code>'</code>, por lo que una validación como las anteriores no sería válida.</p>
+<p>Para este tipo de campos se usan principalmente 3 medios de validación:</p>
+<ul>
+<li>Normalización: La codificación se use del mismo modo en todo el texto</li>
+<li>allow-listing de categorías de caracteres: Unicode permite enumerar categorías como &quot;caracteres alfanuméricos&quot; o &quot;decimales&quot; que no sólo cubre el alfabeto latino sino también otros usados en todo el mundo.</li>
+<li>Allow-listing de caracter individual: Si es necesario permitir el apóstrofe <code>'</code> para rellenar el campo por que ha de escribirse en inglés, puede incluirse unicamente el caracter y no todos los signos de puntuación.</li>
+</ul>
+<p>Así, podemos definir un campo de texto libre con los signos de puntuación <code>.</code>, <code>,</code> y <code>'</code>, y además las categorías alfa numéricas.</p>
+<h4 id="expresiones-regulares">Expresiones regulares</h4>
+<p>Es uno de los principales métodos de validación sintáctica de entradas, pero es realmente peligroso a su vez.</p>
+<p>Las expresiones regulares permiten comprobar que un campo sigue un patrón correcto a la hora de introducir los datos. Por ejemplo, validar el código postal en EEUU:</p>
+<pre><code class="language-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Pattern</span> <span class="hljs-variable">zipPattern</span> <span class="hljs-operator">=</span> Pattern.compile(<span class="hljs-string">&quot;^\d{5}(-\d{4})?$&quot;</span>);
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doPost</span><span class="hljs-params">( HttpServletRequest request, HttpServletResponse response)</span> {
+  <span class="hljs-keyword">try</span> {
+      <span class="hljs-type">String</span> <span class="hljs-variable">zipCode</span> <span class="hljs-operator">=</span> request.getParameter( <span class="hljs-string">&quot;zip&quot;</span> );
+      <span class="hljs-keyword">if</span> ( !zipPattern.matcher( zipCode ).matches() ) {
+          <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">YourValidationException</span>( <span class="hljs-string">&quot;Improper zipcode format.&quot;</span> );
+      }
+      <span class="hljs-comment">// do what you want here, after its been validated ..</span>
+  } <span class="hljs-keyword">catch</span>(YourValidationException e ) {
+      response.sendError( response.SC_BAD_REQUEST, e.getMessage() );
+  }
+}
+</code></pre>
+<div class="markdown-alert markdown-alert-caution"><p class="markdown-alert-title"><svg class="octicon octicon-stop mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Caution</p><p>Al diseñar la expresión regular, hay que tener especial atención con los ataques de la denegación de servicio de RegEx (ReDoS). Estos ataques hacen que un programa usando una Expresión Regular mal diseñada opere muy lentamente y utilice recursos de CPU durante mucho tiempo.</p>
+</div>
+<h4 id="uso-de-validadores-en-programación">Uso de validadores en programación</h4>
+<p>Existen múltiples librerías y métodos predefinidos en los lenguajes de programación más usados para el uso de validadores:</p>
+<ul>
+<li>Validadores de tipo de datos disponibles de forma nativa en marcos de aplicaciones web: Apache Commons Validators y Django Validators.</li>
+<li>Validación contra JSON Schema y XML Schema (XSD) para los datos transferidos entre el servidor y el navegador</li>
+<li>Conversión de tipo (por ejemplo. Integer.parseInt()en Java, int()en Python), con manejo de excepciones</li>
+<li>Rango de valores mínimos y máximos para los parámetros (números, strings, fechas...)</li>
+<li>Array de valores permitidos para pequeños conjuntos de parámetros (por ejemplo, días de la semana)</li>
+<li>Expresiones regulares para cualquier otro dato estructurado</li>
+</ul>
+<h3 id="validación-de-ficheros-de-entrada">Validación de ficheros de entrada</h3>
+<p>En los ficheros subidos se ha de validar tanto la carga como el almacenamiento del mismo:</p>
+<h4 id="carga-del-fichero">Carga del fichero</h4>
+<ul>
+<li>Validar que el nombre cargado utilice una extensión aceptada. Si se espera una imagen, verificar que se sube con la extensión correcta (jpg, jpeg, svg, png, gif...)</li>
+<li>Validar y establecer un tamaño máximo de fichero</li>
+<li>No permitir la carga de ficheros especiales (scripts, .htaccess y .htpasswd, crossdomain.xml y clientaccesspolicy.xml...)</li>
+<li>Para ficheros Zip, validar el fichero antes de extraerlo.</li>
+</ul>
+<h4 id="almacenamiento-del-fichero">Almacenamiento del fichero</h4>
+<ul>
+<li>Usar un nuevo nombre de fichero a la hora de subirlo. No usar el nombre original.</li>
+<li>Realizar un análisis de malware una vez cargados y antes de ser almacenados.</li>
+<li>La ruta del archivo no se debe de especificar por parte del cliente, es decidido por el lado del servidor.</li>
+<li>En el caso de imágenes, usar librerias de reescritura de imágenes que eliminen contenido malicioso</li>
+</ul>
+<h4 id="procesamiento-de-un-fichero-subido">Procesamiento de un fichero subido</h4>
+<ul>
+<li>Para el caso de imágenes subidas y que vayan a ser renderizadas, se deben de servir en el formato correcto (image/jpeg, application/x-xpinstall...)</li>
+</ul>
+<h3 id="references">References</h3>
+<p><a href="https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html">Input Validation Cheat Sheet</a></p>
+<h2 id="cross-site-scripting">Cross-Site Scripting</h2>
+<p>El <strong>Cross-Site Scripting (XSS)</strong> es una vulnerabilidad basada en la inyección de scripts maliciosos en un sitio web con el objetivo de que la víctima los procese y ejecute en su equipo.</p>
+<p>Habitualmente un atacante puede mandar una URL con un payload malicioso (script) con el objetivo de robar datos del navegador de la victima, cookies de sesión, etc.</p>
+<p><img src="file:///c:\Users\julian.fonticoba\workspace\Apuntes-Certified_AppSec_Partitioner-CAP\assets\XSS_Attack.svg" 
+        alt="XSS" 
+        width="70%" 
+        height="70%" 
+        style="display: block; margin: 0 auto" /></p>
+<h3 id="tipos-de-xss">Tipos de XSS</h3>
+<p>Existen 3 tipos de XSS: reflejado (Reflected XSS), almacenado (Stored XSS) y basado en DOM (DOM-based XSS).</p>
+<h4 id="reflejado">Reflejado</h4>
+<p>El atacante inyecta el payload en un parámetro de la solicitud HTTP para que sea procesado por la aplicación y ejecutado por una víctima, a la cual se le hace llegar el enlace.</p>
+<p>Un ejemplo práctico sería una web donde existe un parámetro de búsqueda <code>find</code> que permite encontrar en la página web cualquier término por palabras clave:</p>
+<pre><code>https://miweb.com/buscar?find=palabra_a_buscar
+</code></pre>
+<p>Si en lugar de poner <code>palabra_a_buscar</code> colocamos un script en JS del estilo <code>&lt;script&gt;...&lt;/script&gt;</code> y este se renderiza en la web en modo script y no modo texto, la página web sería vulnerable a un XSS reflejado.</p>
+<p>Así, un atacante podría aprovechar esta vulnerabilidad para enviar un enlace a la victima y que esta ejecutase el script que le permita obtener la información necesaria:</p>
+<pre><code>https://miweb.com/buscar?find=&lt;script&gt;...&lt;/script&gt;
+</code></pre>
+<h4 id="almacenado">Almacenado</h4>
+<p>El atacante inyecta el payload a través de una de las entradas no validadas de una página web y, sin que dicha entrada sea sanitizada, se almacena en un sistema persistente (habitualmente una base de datos) que posteriormente será consultada por las víctimas.</p>
+<p><img src="file:///c:\Users\julian.fonticoba\workspace\Apuntes-Certified_AppSec_Partitioner-CAP\assets\stored_xss.png" 
+        alt="XSS almacenado" 
+        width="70%" 
+        height="70%" 
+        style="display: block; margin: 0 auto" /></p>
+<p>El ataque y los payloads son equivalentes que para el reflejado, pero el atacante no necesita enviar un enlace &quot;envenenado&quot; a la victima, si no que tan solo necesita que esta acceda a un recurso donde ya ha almacenado el script malicioso.</p>
+<h4 id="basado-en-dom">Basado en DOM</h4>
+<p>DOM (Document Object Model) es una interfaz/API de programación que se utiliza en programación web y se utiliza principalmente para representar documentos HTML, XML, XHTML... La gran utilidad de esta interfaz es simplemente que los programas de software pueden acceder y modificar el contenido de los documentos de forma dinámica.</p>
+<p>El XSS basado en DOM busca ejecutar un payload malicioso de tal forma que, al ejecutarlo, se pueda modificar el entorno DOM en el navegador de la víctima. Esto permite la ejecución de código remoto desde el lado de la victima.</p>
+<p>Este tipo de vulnerabilidades vienen introducidas por muchas librerías JavaScript de fuentes no confiables desde el lado del cliente, las cuales pueden escribir en el DOM del sitio web.</p>
+<p>También es habitual que librerías confiables usen métodos donde se cambie el entorno DOM para realizar diferentes acciones sin previa validación correcta de datos. Uno de los ejemplos característicos es <code>jQuery</code>.</p>
+<p>El modelo de explotación realmente es equivalente al XSS reflejado, permitiendo añadir un script malicioso en las entradas a los métodos vulnerables.</p>
+<h3 id="detección-1">Detección</h3>
+<p>La forma de detectar una vulnerabilidad de XSS es probando las diferentes entradas de una web que permiten posteriormente renderizarse para verificar si están correctamente validadas y sanitizadas. Desde <a href="https://github.com/payloadbox/xss-payload-list">este enlace</a> podéis ver una lista de payloads que permiten evaluar si las entradas permiten inyectar XSS.</p>
+<p>Además, existen ciertas herramientas que permiten ayudar a evaluar si un sitio web es vulnerable a XSS.</p>
+<ul>
+<li>BeEF</li>
+<li>BurpSuite</li>
+<li>ZAP</li>
+<li>XSS Hunter</li>
+<li>XSS Assistant</li>
+</ul>
+<h3 id="ejemplo-de-código-vulnerable">Ejemplo de código vulnerable</h3>
+<p><strong>Java</strong></p>
+<pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">recibir_entrada</span><span class="hljs-params">(String messageId, String emailSender, String messageContent)</span> {
+    database.save(messageId, emailSender, messageContent); <span class="hljs-comment">//almacenamos la entrada sin validar en BD</span>
+}
+
+<span class="hljs-keyword">public</span> String <span class="hljs-title function_">renderizar_html</span><span class="hljs-params">(String messageId)</span> {
+    <span class="hljs-type">String</span> <span class="hljs-variable">messageContent</span> <span class="hljs-operator">=</span> database.loadContent(messageId); <span class="hljs-comment">//obtenemos el contenido del mensaje guardado previamente sin validar</span>
+    <span class="hljs-keyword">return</span> String.format(<span class="hljs-string">&quot;&lt;p class=\&quot;messageContent\&quot;&gt;%s&lt;/p&gt;&quot;</span>, messageContent); <span class="hljs-comment">//renderizamos el mensaje previamente guardado y sin validar</span>
+}
+</code></pre>
+<h3 id="prevención">Prevención</h3>
+<p>Para prevenir un XSS debemos de centrarnos en detectar las entradas del usuario y no permitir que sean procesadas tal cual como han sido enviadas.</p>
+<p>El primer paso es detectar aquellos puntos donde recibimos un input no validado (introducido previamente por el usuario) y que luego usamos en nuestra renderización. Puede ser una entrada directamente del usuario (parámetros de búsqueda, datos de un formulario, datos de login...) o de otras fuentes (nombres de ficheros, datos en BD...). En este paso nos pueden ayudar las herramientas de análisis estático de código (SAST).</p>
+<p>Posteriormente debemos de sanitizar la entrada, escapando caracteres especiales y caracteres codificados (por ejemplo, de nada sirve no permitir <code>&lt;</code> si permitimos <code>&amp;lt</code>, su codificación). Para ello existen diferentes aproximaciones, como listas blancas y negras de caracteres, pero una forma más sencilla de validar las entradas/salidas es utilizar librerías seguras y contrastadas, como <code>Apache Commons Text</code> en Java.</p>
+<p><strong>Java</strong></p>
+<pre><code class="language-java"><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> org.apache.commons.text.StringEscapeUtils.escapeHtml4;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">recibir_entrada</span><span class="hljs-params">(String messageId, String emailSender, String messageContent)</span> {
+    database.save(messageId, emailSender, messageContent); <span class="hljs-comment">//almacenamos la entrada sin validar en BD</span>
+}
+
+<span class="hljs-keyword">public</span> String <span class="hljs-title function_">renderizar_html</span><span class="hljs-params">(String messageId)</span> {
+    <span class="hljs-type">String</span> <span class="hljs-variable">messageContent</span> <span class="hljs-operator">=</span> database.loadContent(messageId); <span class="hljs-comment">//obtenemos el contenido del mensaje guardado previamente sin validar</span>
+    <span class="hljs-type">String</span> <span class="hljs-variable">escapedContent</span> <span class="hljs-operator">=</span> escapeHtml4(messageContent); <span class="hljs-comment">//validamos el contenido antes de enviarlo al cliente</span>
+    <span class="hljs-keyword">return</span> String.format(<span class="hljs-string">&quot;&lt;p class=\&quot;messageContent\&quot;&gt;%s&lt;/p&gt;&quot;</span>, escapedContent); <span class="hljs-comment">//renderizamos el mensaje previamente guardado y VALIDADO</span>
+}
+</code></pre>
+<p>Finalmente, es una buena práctica y muy recomendada la validación de entradas de forma restrictiva. Según el tipo de datos, se debe de validar que el usuario está introduciendo correctamente los datos. Esto no tan solo previene de ataques de XSS, si no cualquier tipo de inyección. Por ejemplo, si estamos recibiendo un mail, el formato del mismo debe de ser <code>...@[dominio].com</code>. Para este tipo de validaciones existe la librería <code>Apache Commons Validator</code> en Java, que permite verificar muchos tipos de datos distintos.</p>
+<pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">recibir_entrada</span><span class="hljs-params">(String messageId, String emailSender, String messageContent)</span>
+        <span class="hljs-keyword">throws</span> Exception {
+
+    UUID messageUUID;
+    <span class="hljs-keyword">try</span> {
+        messageUUID = UUID.fromString(messageId); <span class="hljs-comment">//comprobamos que el UUID es valido</span>
+    }
+    <span class="hljs-keyword">catch</span> (IllegalArgumentException e) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Exception</span>(<span class="hljs-string">&quot;validation of messageId parameter failed&quot;</span>);
+    }
+
+    <span class="hljs-type">EmailValidator</span> <span class="hljs-variable">validator</span> <span class="hljs-operator">=</span> EmailValidator.getInstance();
+    <span class="hljs-keyword">if</span> (!validator.isValid(emailSender)) { <span class="hljs-comment">//comprobamos que el email es valido</span>
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Exception</span>(<span class="hljs-string">&quot;validation of email parameter failed&quot;</span>);
+    }
+
+    database.save(messageUUID, emailSender, messageContent);
+}
+</code></pre>
+<h4 id="content-security-policy-csp">Content Security Policy (CSP)</h4>
+<p>El CSP es una función de seguridad implementada por todos los navegadores web modernos qie permite mitigar ataques web, y en especial los XSS. Es una política que permite definir que fuentes de contenido son realmente legitimas y seguras para renderizar: scripts, imágenes, fuentes...</p>
+<p>El objetivo de esta política es prevenir la ejecución de código no autorizado o malicioso en las páginas web, de tal forma que puede prevenir la ejecución de cualquier script malicioso, dado que no es confiable.</p>
+<p>El Content Security Policy (CSP) se define usando ciertas directivas en la cabecera HTTP <code>Content-Security-Policy</code>, permitiendo definir que dominios tienen permitido ejecutar los recursos. Habitualmente (aunque cada caso es particular) es recomendable establecer una política que solo permita cargar los scripts desde el mismo origen o, como mucho, de algún otro origen de confianza definido.</p>
+<pre><code>Content-Security-Policy: default-src 'self' https://trusted-site.example;
+</code></pre>
+<p>El ejemplo anterior define que los recursos solo pueden ser cargados desde el propio origen y desde <code>https://trusted-site.example</code>. Cualquier otro origen será bloqueado.</p>
+<p>Mas sobre como configurar <a href="https://developer.mozilla.org/es/docs/Web/HTTP/CSP">Content Security Policy (CSP)</a></p>
+<h4 id="cabecera-x-xss-protection">Cabecera X-XSS-Protection</h4>
+<p>Permite habilitar o deshabilitar el filtro XSS integrado en algunos navegadores. Es recomendable tenerla activada en todo momento, ya que puede ayudar a prevenir ataques XSS.</p>
+<h3 id="referencias-3">Referencias</h3>
+<p><a href="https://www.welivesecurity.com/la-es/2021/09/28/que-es-ataque-xss-cross-site-scripting/">Qué es un ataque de XSS o Cross-Site Scripting - WeLiveSecurity</a></p>
+<p><a href="https://blog.hackmetrix.com/xss-cross-site-scripting/">Vulnerabilidad XSS (Cross Site Scripting): Qué es y cómo solucionarla</a></p>
+<p><a href="https://es.wikipedia.org/wiki/Document_Object_Model">DOM</a></p>
+<p><a href="https://learn.snyk.io/lesson/xss/">Cross-site scripting (XSS)</a></p>
+<p><a href="https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/02-Testing_for_Stored_Cross_Site_Scripting">OWASP - Testing for Stored XSS</a></p>
+<h2 id="sql-injection">SQL Injection</h2>
+<p>El <strong>SQL injection (SQLi)</strong> es una vulnerabilidad web que permite a un atacante inyectar una consulta SQL maliciosa a la base de datos de una aplicación.</p>
+<p>El objetivo de este ataque es poder acceder a datos almacenados en una BD a los cuales el atacante no debería poder tener acceso y/o manipular o eliminar datos del origen.</p>
+<p><img src="file:///c:\Users\julian.fonticoba\workspace\Apuntes-Certified_AppSec_Partitioner-CAP\assets\sql-injection.svg" 
+        alt="SQLi" 
+        width="70%" 
+        height="70%" 
+        style="display: block; margin: 0 auto" /></p>
+<p>Habitualmente los ataques SQLi buscan comprometer:</p>
+<ul>
+<li>Contraseñas de usuarios</li>
+<li>Datos financieros: tarjetas de crédito, números de cuenta</li>
+<li>Información personal</li>
+</ul>
+<h3 id="tipos-de-sqli">Tipos de SQLi</h3>
+<ul>
+<li><strong>Inyección SQL In-Band</strong>: Permite obtener la información por el mismo canal que se utiliza para ejecutar el payload. Generalmente, muestra los resultados de la consulta maliciosa en la pantalla del sitio web.</li>
+</ul>
+<p><img src="file:///c:\Users\julian.fonticoba\workspace\Apuntes-Certified_AppSec_Partitioner-CAP\assets\inband.png" 
+        alt="SQLi" 
+        width="70%" 
+        height="70%" 
+        style="display: block; margin: 0 auto" /></p>
+<ul>
+<li><strong>Inyección SQL basado en error (error-based)</strong>: Permite extraer información de base de datos por errores inducidos en la base de datos. Habitualmente esto permite obtener información relevante de la BD, como servidor, versión, nombre de base de datos...</li>
+</ul>
+<p><img src="file:///c:\Users\julian.fonticoba\workspace\Apuntes-Certified_AppSec_Partitioner-CAP\assets\errorbased.png" 
+        alt="SQLi" 
+        width="70%" 
+        height="70%" 
+        style="display: block; margin: 0 auto" /></p>
+<ul>
+<li><strong>Inyección SQL a ciegas (blind)</strong>: Permite obtener información de la base de datos sin ver ningún resultado, infiriendo los resultados según pruebas verdadero-falso.</li>
+</ul>
+<p><img src="file:///c:\Users\julian.fonticoba\workspace\Apuntes-Certified_AppSec_Partitioner-CAP\assets\blind.png" 
+        alt="SQLi" 
+        width="70%" 
+        height="70%" 
+        style="display: block; margin: 0 auto" /></p>
+<h3 id="detección-2">Detección</h3>
+<p>La forma de detectar una vulnerabilidad de SQLi es probando las diferentes entradas de una web que permiten posteriormente enviarse a base de datos para verificar si están correctamente validadas y sanitizadas. Desde <a href="https://github.com/payloadbox/sql-injection-payload-list">este enlace</a> podéis encontrar una lista de payloads que permiten evaluar si las entradas permiten inyectar sentencias SQL.</p>
+<p>Además, existen ciertas herramientas que permiten ayudar a evaluar si un sitio web es vulnerable a SQLi.</p>
+<ul>
+<li>SQLmap</li>
+<li>jSQL Injection</li>
+<li>Whitewidow</li>
+</ul>
+<h3 id="ejemplo-de-código-vulnerable-1">Ejemplo de código vulnerable</h3>
+<p><strong>Java</strong></p>
+<pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">comprobar_credenciales</span><span class="hljs-params">(
+        HttpServletRequest req, Connection con)</span> <span class="hljs-keyword">throws</span> SQLException {
+    <span class="hljs-comment">//Query que busca un usuario en base de datos con las credenciales dadas</span>
+    <span class="hljs-comment">//concatenando las entradas directamente en la consulta</span>
+    <span class="hljs-type">String</span> <span class="hljs-variable">sqlQuery</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;SELECT email FROM credentials &quot;</span> +
+            <span class="hljs-string">&quot;WHERE email=&#x27;&quot;</span> + req.getParameter(<span class="hljs-string">&quot;email&quot;</span>) + <span class="hljs-string">&quot;&#x27; &quot;</span> +
+            <span class="hljs-string">&quot;AND password=&#x27;&quot;</span> + req.getParameter(<span class="hljs-string">&quot;password&quot;</span>) + <span class="hljs-string">&quot;&#x27;&quot;</span>;
+
+    <span class="hljs-type">Statement</span> <span class="hljs-variable">statement</span> <span class="hljs-operator">=</span> con.createStatement();
+
+    <span class="hljs-comment">//Consulta la base de datos con la query vulnerable</span>
+    <span class="hljs-type">ResultSet</span> <span class="hljs-variable">rs</span> <span class="hljs-operator">=</span> statement.executeQuery(sqlQuery);
+    <span class="hljs-keyword">return</span> rs.next();
+}
+</code></pre>
+<p>Se podría explotar con el siguiente payload para saltarse la comprobación:</p>
+<pre><code class="language-sql"><span class="hljs-keyword">WHERE</span> email<span class="hljs-operator">=</span><span class="hljs-string">&#x27;user1@startup.io&#x27;</span>
+<span class="hljs-keyword">AND</span> password<span class="hljs-operator">=</span><span class="hljs-string">&#x27;idontknow&#x27;</span> <span class="hljs-keyword">OR</span> <span class="hljs-number">1</span><span class="hljs-operator">=</span><span class="hljs-number">1</span>;
+</code></pre>
+<h3 id="prevención-1">Prevención</h3>
+<p>Para prevenir un SQLi debemos de centrarnos en detectar las entradas del usuario y no permitir que sean enviadas a base de datos antes de que sean validadas y sanitizadas.</p>
+<p>El primer paso es detectar aquellos puntos donde recibimos un input no validado (introducido previamente por el usuario) y que luego usamos en nuestra consulta a base de datos. En este paso nos pueden ayudar las herramientas de análisis estático de código (SAST).</p>
+<p>Cada una de las llamadas a bases de datos SQL que incluyen algún parámetro introducido por el usuario deben de ser <strong>parametrizadas</strong>, y no formadas a través de concatenaciones de strings o similares. En Java existe la clase <code>PreparedStatement</code>, que proviene de <code>Connection</code>.</p>
+<p><strong>Java</strong></p>
+<pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">comprobar_credenciales</span><span class="hljs-params">(
+        HttpServletRequest req, Connection con)</span> <span class="hljs-keyword">throws</span> SQLException {
+    <span class="hljs-type">String</span> <span class="hljs-variable">sqlQuery</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;SELECT email FROM credentials &quot;</span> +
+            <span class="hljs-string">&quot;WHERE email= ? &quot;</span> +
+            <span class="hljs-string">&quot;AND password= ? &quot;</span>;
+
+    <span class="hljs-type">PreparedStatement</span> <span class="hljs-variable">statement</span> <span class="hljs-operator">=</span> con.prepareStatement(sqlQuery);
+    statement.setString(<span class="hljs-number">1</span>, req.getParameter(<span class="hljs-string">&quot;email&quot;</span>));
+    statement.setString(<span class="hljs-number">2</span>, req.getParameter(<span class="hljs-string">&quot;password&quot;</span>));
+
+    <span class="hljs-type">ResultSet</span> <span class="hljs-variable">rs</span> <span class="hljs-operator">=</span> statement.executeQuery(sqlQuery);
+    <span class="hljs-keyword">return</span> rs.next();
+}
+</code></pre>
+<h3 id="referencias-4">Referencias</h3>
+<p><a href="https://portswigger.net/web-security/sql-injection">SQL injection</a></p>
+<p><a href="https://learn.snyk.io/lesson/sql-injection/">SQL injection (SQLi) - Snyk Learn</a></p>
+<p><a href="https://owasp.org/www-community/attacks/SQL_Injection">SQL injection - OWASP</a></p>
+<h2 id="otras-vulnerabilidades-de-inyección">Otras vulnerabilidades de inyección</h2>
+<ul>
+<li>
+<p><strong>Inyección de comandos (Command Injection):</strong> Se produce cuando un atacante inserta comandos maliciosos en los datos de entrada de la aplicación, con el objetivo de ejecutar comandos en el sistema operativo subyacente.</p>
+<p><strong>Ejemplo:</strong></p>
+<pre><code class="language-java"><span class="hljs-keyword">import</span> java.io.BufferedReader;
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.io.InputStreamReader;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">EjecutarComando</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">String</span> <span class="hljs-variable">userInput</span> <span class="hljs-operator">=</span> args[<span class="hljs-number">0</span>];
+
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-comment">// Ejecutar el comando ingresado por el usuario sin validar</span>
+            <span class="hljs-type">Process</span> <span class="hljs-variable">proceso</span> <span class="hljs-operator">=</span> Runtime.getRuntime().exec(<span class="hljs-string">&quot;ls &quot;</span> + userInput);
+            <span class="hljs-type">BufferedReader</span> <span class="hljs-variable">reader</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(proceso.getInputStream()));
+            proceso.waitFor();
+        } <span class="hljs-keyword">catch</span> (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+<p><strong>Prevención:</strong></p>
+<p>Validar y limitar la entrada del usuario, y usar funciones de ejecución de comandos seguras o ejecución de comandos con parámetros.</p>
+<pre><code class="language-java"><span class="hljs-keyword">import</span> java.io.BufferedReader;
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.io.InputStreamReader;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">EjecutarComandoSeguro</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">String</span> <span class="hljs-variable">userInput</span> <span class="hljs-operator">=</span> args[<span class="hljs-number">0</span>];
+
+        <span class="hljs-comment">// Validar que el userInput solo contiene caracteres permitidos (por ejemplo, alfanuméricos)</span>
+        <span class="hljs-keyword">if</span> (userInput.matches(<span class="hljs-string">&quot;^[a-zA-Z0-9]+$&quot;</span>)) {
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-comment">// Ejecutar el comando ingresado por el usuario de manera segura</span>
+                <span class="hljs-type">ProcessBuilder</span> <span class="hljs-variable">builder</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ProcessBuilder</span>(<span class="hljs-string">&quot;ls&quot;</span>, userInput);
+                <span class="hljs-type">Process</span> <span class="hljs-variable">proceso</span> <span class="hljs-operator">=</span> builder.start();
+                <span class="hljs-type">BufferedReader</span> <span class="hljs-variable">reader</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(proceso.getInputStream()));
+                proceso.waitFor();
+            } <span class="hljs-keyword">catch</span> (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        } <span class="hljs-keyword">else</span> {
+            System.out.println(<span class="hljs-string">&quot;Entrada no válida.&quot;</span>);
+        }
+    }
+}
+</code></pre>
+</li>
+<li>
+<p>Inyección de LDAP (LDAP Injection): Se produce cuando los datos de entrada no se validan adecuadamente en consultas LDAP, permitiendo a un atacante manipular la consulta LDAP y comprometer la seguridad del sistema.</p>
+<p><strong>Ejemplo:</strong></p>
+<pre><code class="language-java"><span class="hljs-keyword">import</span> javax.naming.Context;
+<span class="hljs-keyword">import</span> javax.naming.directory.DirContext;
+<span class="hljs-keyword">import</span> javax.naming.directory.InitialDirContext;
+<span class="hljs-keyword">import</span> java.util.Hashtable;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LdapAutenticacion</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">String</span> <span class="hljs-variable">usuario</span> <span class="hljs-operator">=</span> args[<span class="hljs-number">0</span>];
+        <span class="hljs-type">String</span> <span class="hljs-variable">contraseña</span> <span class="hljs-operator">=</span> args[<span class="hljs-number">1</span>];
+
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-comment">// Configurar la conexión LDAP</span>
+            Hashtable&lt;String, String&gt; env = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Hashtable</span>&lt;&gt;();
+            env.put(Context.INITIAL_CONTEXT_FACTORY, <span class="hljs-string">&quot;com.sun.jndi.ldap.LdapCtxFactory&quot;</span>);
+            env.put(Context.PROVIDER_URL, <span class="hljs-string">&quot;ldap://servidor-ldap.com&quot;</span>);
+            env.put(Context.SECURITY_AUTHENTICATION, <span class="hljs-string">&quot;simple&quot;</span>);
+            env.put(Context.SECURITY_PRINCIPAL, <span class="hljs-string">&quot;uid=&quot;</span> + usuario + <span class="hljs-string">&quot;,ou=usuarios,dc=dominio,dc=com&quot;</span>);
+            env.put(Context.SECURITY_CREDENTIALS, contraseña);
+
+            <span class="hljs-comment">// Autenticar al usuario</span>
+            <span class="hljs-type">DirContext</span> <span class="hljs-variable">ctx</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">InitialDirContext</span>(env);
+            System.out.println(<span class="hljs-string">&quot;Autenticación exitosa&quot;</span>);
+        } <span class="hljs-keyword">catch</span> (Exception e) {
+            System.out.println(<span class="hljs-string">&quot;Error de autenticación: &quot;</span> + e.getMessage());
+        }
+    }
+}
+</code></pre>
+<p><strong>Prevención:</strong></p>
+<p>Validar y limitar la entrada del usuario, y usar funciones de ejecución de comandos seguras o ejecución de comandos con parámetros.</p>
+<pre><code class="language-java"><span class="hljs-keyword">import</span> javax.naming.Context;
+<span class="hljs-keyword">import</span> javax.naming.directory.DirContext;
+<span class="hljs-keyword">import</span> javax.naming.directory.InitialDirContext;
+<span class="hljs-keyword">import</span> java.util.Hashtable;
+<span class="hljs-keyword">import</span> java.util.regex.Pattern;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LdapAutenticacionSegura</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">String</span> <span class="hljs-variable">usuario</span> <span class="hljs-operator">=</span> args[<span class="hljs-number">0</span>];
+        <span class="hljs-type">String</span> <span class="hljs-variable">contraseña</span> <span class="hljs-operator">=</span> args[<span class="hljs-number">1</span>];
+
+        <span class="hljs-comment">// Validar que el usuario solo contiene caracteres permitidos (por ejemplo, alfanuméricos)</span>
+        <span class="hljs-keyword">if</span> (usuario.matches(<span class="hljs-string">&quot;^[a-zA-Z0-9]+$&quot;</span>)) {
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-comment">// Configurar la conexión LDAP de manera segura</span>
+                Hashtable&lt;String, String&gt; env = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Hashtable</span>&lt;&gt;();
+                env.put(Context.INITIAL_CONTEXT_FACTORY, <span class="hljs-string">&quot;com.sun.jndi.ldap.LdapCtxFactory&quot;</span>);
+                env.put(Context.PROVIDER_URL, <span class="hljs-string">&quot;ldap://servidor-ldap.com&quot;</span>);
+                env.put(Context.SECURITY_AUTHENTICATION, <span class="hljs-string">&quot;simple&quot;</span>);
+                env.put(Context.SECURITY_PRINCIPAL, <span class="hljs-string">&quot;uid=&quot;</span> + usuario + <span class="hljs-string">&quot;,ou=usuarios,dc=dominio,dc=com&quot;</span>);
+                env.put(Context.SECURITY_CREDENTIALS, contraseña);
+
+                <span class="hljs-comment">// Autenticar al usuario</span>
+                <span class="hljs-type">DirContext</span> <span class="hljs-variable">ctx</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">InitialDirContext</span>(env);
+                System.out.println(<span class="hljs-string">&quot;Autenticación exitosa&quot;</span>);
+            } <span class="hljs-keyword">catch</span> (Exception e) {
+                System.out.println(<span class="hljs-string">&quot;Error de autenticación: &quot;</span> + e.getMessage());
+            }
+        } <span class="hljs-keyword">else</span> {
+            System.out.println(<span class="hljs-string">&quot;Nombre de usuario no válido.&quot;</span>);
+        }
+    }
+}
+</code></pre>
+</li>
+</ul>
+<h1 id="a042021---insecure-design">A04:2021 - Insecure design</h1>
+<p>Existe una diferencia entre un diseño inseguro y una implementación insegura. Distinguimos entre fallas de diseño y defectos de implementación por un motivo, difieren en la causa raíz y remediaciones. Incluso un diseño seguro puede tener defectos de implementación que conduzcan a vulnerabilidades que pueden explotarse.</p>
+<p>El diseño seguro es una cultura y metodología que evalúa constantemente las amenazas y garantiza que el código esté diseñado y probado de manera sólida para prevenir métodos de ataque conocidos. El modelado de amenazas debe estar integrado en sesiones de refinamiento (o actividades similares); buscar cambios en los flujos de datos y el control de acceso u otros controles de seguridad. Durante la creación de las historias de usuario, determine el flujo correcto y los estados de falla. Asegúrese de que sean bien entendidos y acordados por las partes responsables e impactadas</p>
+<h3 id="prevención-2">Prevención</h3>
+<ul>
+<li>Establezca y use un ciclo de desarrollo seguro apoyado en profesionales en Seguridad de Aplicaciones para ayudarlo a evaluar y diseñar la seguridad y controles relacionados con la privacidad.</li>
+<li>Establezca y utilice un catálogo de patrones de diseño seguros.</li>
+<li>Utilice el modelado de amenazas para flujos críticos de autenticación, control de acceso, lógica de negocio y todo clave.</li>
+<li>Integre el lenguaje y los controles de seguridad en las historias de usuario.</li>
+<li>Integre verificaciones de viabilidad en cada capa de su aplicación (desde el frontend al backend).</li>
+<li>Escriba pruebas unitarias y de integración para validar que todos los flujos críticos son resistentes al modelo de amenazas. Recopile casos de uso y casos de mal uso para cada capa de la aplicación.</li>
+<li>Separe las capas del sistema y las capas de red según las necesidades de exposición y protección.</li>
+<li>Separe a los tenants de manera robusta por diseño en todos los niveles.</li>
+<li>Limitar el consumo de recursos por usuario o servicio.</li>
+</ul>
+<h1 id="a052021---security-misconfigurations">A05:2021 - Security Misconfigurations</h1>
+<p>La aplicación puede ser vulnerable si:</p>
+<ul>
+<li>Le falta el hardening de seguridad adecuado en cualquier parte del stack tecnológico o permisos configurados incorrectamente en los servicios en la nube.</li>
+<li>Tiene funciones innecesarias habilitadas o instaladas (puertos, servicios, páginas, cuentas o privilegios innecesarios, por ejemplo).</li>
+<li>Las cuentas predeterminadas y sus contraseñas aún están habilitadas y sin cambios.</li>
+<li>El manejo de errores revela a los usuarios rastros de pila u otros mensajes de error demasiado informativos.</li>
+<li>El software está desactualizado o es vulnerable (consulte A06:2021-Componentes Vulnerables y Desactualizados).</li>
+<li>Para sistemas actualizados, las últimas funciones de seguridad están deshabilitadas o no configuradas de forma segura.</li>
+<li>Las configuraciones de seguridad en los servidores de aplicaciones, frameworks de aplicaciones (Struts, Spring o <a href="http://ASP.NET">ASP.NET</a> por ejemplo), bibliotecas, bases de datos, etc., no poseen configurados valores seguros.</li>
+<li>El servidor no envía encabezados o directivas de seguridad, o no poseen configurados valores seguros.</li>
+</ul>
+<h2 id="security-best-practices-and-hardening-mechanisms">Security Best Practices and Hardening Mechanisms.</h2>
+<h3 id="same-origin-policy">Same Origin Policy</h3>
+<p>La <strong>política same-origin</strong> restringe cómo un documento o script cargado desde un origen puede interactuar con un recurso de otro origen. Es un mecanismo de seguridad implementado por los navegadores modernos y que permite evitar que los sitios web ejecuten código potencialmente malicioso a otro origen.</p>
+<p>Dos páginas tienen el mismo origen si el protocolo, puerto (si es especificado) y anfitrión son los mismos para ambas páginas. Esto implica que la URL <code>https://midominio.com/index.html</code> permitirá cargar la ejecución de sus documentos para el protocolo <code>HTTPS</code> en el dominio <code>midominio.com</code> en el puerto <code>443</code>. Si se intenta ejecutar un script en otro dominio (desde <code>es.midominio.com</code> a un dominio completamente distinto), en otro protocolo (<code>HTTP</code>) o otro puerto (<code>80</code>), no estaría permitido y no se ejecutará.</p>
+<p>Esta política es fundamental, ya que cuando un navegador envía una solicitud HTTP de un origen a otro, cualquier cookie, incluidas las cookies de sesión de autenticación relevantes para el otro dominio también se envían como parte de la solicitud. Sin la política same-origin, si usted visitó un sitio web malicioso, éste sería capaz de tener acceso a las cookies de sesión y suplantar tu identidad.</p>
+<h4 id="cors--cross-origin-resource-sharing">CORS  (Cross-Origin Resource Sharing)</h4>
+<p>Su utilidad es permitir a ciertos dominios saltarse la politica same-origin. Con una buena configuración, habilitar dominios confiables es una práctica habitual usada para:</p>
+<ul>
+<li>Consumo de APIs Externas: Muchas aplicaciones web necesitan acceder a servicios o datos proporcionados por servidores externos. Al habilitar CORS en esos servidores, se permite que los clientes web realicen solicitudes directas sin violar la Same Origin Policy.</li>
+<li>Compartir recursos entre dominios confiables, como los subdominios de tu web.</li>
+</ul>
+<p>Para configurarla, existen muchas librerías que permiten realizarlo bajo código. A nivel de solicitud y respuesta, se modela haciendo uso de la cabecera <code>Access-Control-Allow-Origin</code>.</p>
+<pre><code class="language-http"><span class="hljs-attribute">Access-Control-Allow-Origin</span><span class="hljs-punctuation">: </span>https://dominio-permitido.com
+</code></pre>
+<p>Esta cabecera especifica qué orígenes tienen permiso para acceder al recurso.</p>
+<div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title"><svg class="octicon octicon-light-bulb mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p><p>Para entender cómo funciona, imagina que tu frontend está alojado en el dominio &quot;<a href="https://dominio-permitido.com">https://dominio-permitido.com</a>&quot; y tu backend está en &quot;<a href="https://miservidor.com">https://miservidor.com</a>&quot;. Si el backend envía la cabecera Access-Control-Allow-Origin con el valor &quot;<a href="https://dominio-permitido.com">https://dominio-permitido.com</a>&quot;, significa que el navegador permitirá que el frontend haga solicitudes al backend desde &quot;<a href="https://dominio-permitido.com">https://dominio-permitido.com</a>&quot;.</p>
+</div>
+<h3 id="security-headers">Security Headers</h3>
+<ul>
+<li><a href="#hsts">Strict-Transport-Security (HSTS)</a></li>
+<li><a href="#content-security-policy-csp">Content-Security-Policy (CSP)</a></li>
+<li><a href="#cabecera-x-content-type-options">X-Content-Type-Options</a></li>
+<li>X-Frame-Options: Controla si un navegador debe permitir que una página sea mostrada en un marco (<code>&lt;frame&gt;</code> o <code>&lt;iframe&gt;</code>). Ayuda a prevenir ataques de clickjacking.</li>
+<li><a href="#cabecera-x-xss-protection">X-XSS-Protection</a></li>
+<li><a href="#cors--cross-origin-resource-sharing">CORS (Cross-Origin Resource Sharing)</a></li>
+<li>Referrer-Policy: La cabecera Referrer-Policy controla cómo el navegador debe manejar la información de referencia (referrer) cuando un usuario hace clic en un enlace o realiza una solicitud a través de un recurso.</li>
+<li>Feature-Policy: La cabecera Feature-Policy controla las funciones que pueden ser utilizadas en el contexto del documento, proporcionando un control más granular sobre las características del navegador que pueden ser habilitadas o deshabilitadas en una página web (permitir geolocalización, microfono...)</li>
+</ul>
+<h3 id="referencias-5">Referencias</h3>
+<p><a href="https://developer.mozilla.org/es/docs/Web/Security/Same-origin_policy">Política Same-origin</a></p>
+<h1 id="a062021---vulnerable-and-outdated-components">A06:2021 - Vulnerable and Outdated Components</h1>
+<p>Un desarrollo es vulnerable a esta categoría de vulnerabilidades:</p>
+<ul>
+<li>Si no conoce las versiones de todos los componentes que utiliza (tanto en el cliente como en el servidor). Esto incluye los componentes que usa directamente, así como las dependencias anidadas.</li>
+<li>Si el software es vulnerable, carece de soporte o no está actualizado. Esto incluye el sistema operativo, el servidor web/de aplicaciones, el sistema de administración de bases de datos (DBMS), las aplicaciones, las API y todos los componentes, los entornos de ejecución y las bibliotecas.</li>
+<li>Si no analiza en búsqueda de vulnerabilidades de forma regular y no se suscribe a los boletines de seguridad relacionados con los componentes que utiliza.</li>
+<li>Si no repara o actualiza la plataforma subyacente, frameworks y dependencias de manera oportuna y basada en el riesgo. Esto suele ocurrir en entornos en los que la aplicación de parches de seguridad es una tarea mensual o trimestral bajo control de cambios, lo que deja a las organizaciones abiertas a días o meses de exposición innecesaria a vulnerabilidades con soluciones disponibles.</li>
+<li>Si los desarrolladores de software no testean la compatibilidad de las bibliotecas actualizadas, actualizadas o parcheadas.</li>
+</ul>
+<h3 id="prevención-3">Prevención</h3>
+<ul>
+<li>Elimine las dependencias que no son utilizadas, funcionalidades, componentes, archivos y documentación innecesarios.</li>
+<li>Realice un inventario continuo de las versiones de los componentes en el cliente y en el servidor (por ejemplo, frameworks, bibliotecas) y sus dependencias utilizando herramientas como: versions, OWASP Dependency Check, retire.js, etc. Supervise continuamente fuentes como Common Vulnerability and Exposures (CVE) y National Vulnerability Database (NVD) para detectar vulnerabilidades en los componentes.</li>
+<li>Solo obtenga componentes de fuentes oficiales a través de enlaces seguros.</li>
+<li>Supervise las bibliotecas y los componentes que no sea mantenidos o no generen parches de seguridad para versiones anteriores. Si la aplicación de parches no es posible, considere implementar un parche virtual para monitorear, detectar o protegerse contra el problema descubierto.</li>
+</ul>
+<h1 id="a072021---identification-and-authentication-failures">A07:2021 - Identification and Authentication Failures</h1>
+<h2 id="authentication-related-vulnerabilities">Authentication related Vulnerabilities</h2>
+<h3 id="brute-force-attacks">Brute force Attacks</h3>
+<p>Los <strong>ataques de fuerza bruta</strong> permiten averiguar de forma automática las credenciales de un usuario en un sistema o aplicación.</p>
+<p>Los ataques de fuerza bruta se dividen en:</p>
+<ul>
+<li>Ataques de fuerza bruta clásicos: se van probando todas las combinaciones desde n a m caracteres hasta descubrir cual es la credencial coincidente</li>
+<li>Ataques de diccionario: se utilizan diccionarios público (top 1000 contraseñas mas usadas, por ejemplo) o diccionarios personalizados dirigidos a un usuario conocido y previamente investigado hasta encontrar la contraseña</li>
+<li>Ataque de credenciales por defecto: se prueban credenciales por defecto del sistema hasta encontrar un fallo de configuración que permita el acceso</li>
+</ul>
+<h4 id="prevención-4">Prevención</h4>
+<ul>
+<li>No utilizar las credenciales por defecto y modificarlas cuanto antes</li>
+<li>Uso de credenciales robustas haciendo uso de políticas de contraseñas seguras</li>
+<li>Comprobación u protección ante contraseñas comunes</li>
+<li>Bloqueo y monitorización de cuentas tras un número específico de intentos fallidos</li>
+<li>Implementación de doble factor de autenticación</li>
+<li>Uso de captchas y soluciones anti-bots</li>
+<li>Limitaciones de solicitudes en base a IP o retraso después de n intentos fallidos</li>
+</ul>
+<h3 id="password-storage-and-password-policy">Password Storage and Password Policy</h3>
+<p>El <strong>almacenamiento de contraseñas de forma insegura</strong> y el <strong>uso de malas políticas a la hora de usar contraseñas</strong> son vulnerabilidades de alto riesgo que permiten que un atacante pueda ganar acceso de forma ilegitima a una aplicación o sistema y comprometerl@.</p>
+<h4 id="password-storage-almacenamiento-de-contraseñas">Password Storage (Almacenamiento de Contraseñas)</h4>
+<p>Almacenar las contraseñas en texto plano en base de datos u otras ubicaciones (repositorios de código, ficheros de configuración) o sin un hashing correcto es un fallo de seguridad que permite a los atacantes obtener acceso de forma sencilla a un sistema.</p>
+<h5 id="prevención-5">Prevención</h5>
+<p>Las contraseñas de usuarios han de ser almacenadas haciendo uso de funciones hash modernas y seguras, como SHA-2 o SHA-3 (inclusive otros algoritmos especificos para este tipo de casos, como bcrypt, scrypt o Argon2), y con salting.</p>
+<p>Además, las contraseñas nunca han de ser hardcodeadas en código o en configuración, deben de estar guardadas en un vault de contraseñas seguro y actualizado, con un cifrado robusto.</p>
+<h4 id="password-policy-política-de-contraseñas">Password Policy (Política de Contraseñas)</h4>
+<p>Se debe de generar una política de contraseñas robusta:</p>
+<ul>
+<li>Uso de un número de caracteres mínimo, al menos de 8 caracteres</li>
+<li>Uso de diferentes tipos de caracteres, como digitos, letras minusculas y mayusculas y símbolos</li>
+<li>Buena política de rotación de contraseña</li>
+<li>Buena política de recuperación de contraseñas</li>
+<li>Uso de 2FA</li>
+<li>Implantar un metodo de acceso corporativo (SSO)</li>
+<li>No exponer credenciales</li>
+</ul>
+<h1 id="a082021---software-and-data-integrity-failures">A08:2021 - Software and Data Integrity Failures</h1>
+<p>Los fallos de integridad del software y de los datos están relacionados con código e infraestructura no protegidos contra alteraciones (integridad). Un pipeline CI/CD inseguro puede conducir a accesos no autorizados, la inclusión de código malicioso o el compromiso del sistema en general. Además, es común en la actualidad que las aplicaciones implementen funcionalidades de actualización, a través de las cuales se descargan nuevas versiones de la misma sin las debidas verificaciones integridad que fueron realizadas previamente al instalar la aplicación.</p>
+<h3 id="prevención-6">Prevención</h3>
+<ul>
+<li>Utilice firmas digitales o mecanismos similares para verificar que el software o datos provienen efectivamente de la fuente esperada y no fueron alterados.</li>
+<li>Asegúrese que las bibliotecas y dependencias, tales como npm o maven son utilizadas desde repositorios confiables. Si su perfil de riesgo es alto, considere alojarlas en un repositorio interno cuyo contenido ha sido previamente analizado.</li>
+<li>Asegúrese que se utilice una herramienta de análisis de componentes de terceros, cómo OWASP Dependency Check u OWASP CycloneDX, con el fin de verificar la ausencia de vulnerabilidades conocidas.</li>
+<li>Asegúrese que se utilice un proceso de revisión de cambios de código y configuraciones para minimizar las posibilidades de que código o configuraciones maliciosas sean introducidos en su pipeline.</li>
+<li>Asegúrese que su pipeline CI/CD posee adecuados controles de acceso, segregación y configuraciones que permitan asegurar la integridad del código a través del proceso de build y despliegue.</li>
+<li>Asegúrese que datos sin cifrar o firmar no son enviados a clientes no confiables sin alguna forma de verificación de integridad o firma electrónica con el fin de detectar modificaciones o la reutilización de datos previamente serializados.</li>
+</ul>
+<h1 id="a092021--security-logging-and-monitoring-failures">A09:2021 – Security Logging and Monitoring Failures</h1>
+<p>Detección, escalamiento y respuesta ante brechas activas. Sin registros y monitoreo, las brechas no pueden ser detectadas. Registros, detecciones, monitoreo y respuesta activas insuficientes pueden ocurrir en cualquier momento:</p>
+<ul>
+<li>Eventos auditables, tales como los inicios de sesión, fallas en el inicio de sesión y transacciones de alto valor no son registradas.</li>
+<li>Advertencias y errores generan registros poco claros, inadecuados y en algunos casos ni se generan.</li>
+<li>Registros en aplicaciones y API no son monitoreados para detectar actividades sospechosas.</li>
+<li>Los registros son únicamente almacenados en forma local.</li>
+<li>Los umbrales de alerta y procesos de escalamiento no están correctamente implementados o no son efectivos.</li>
+<li>Las aplicaciones no logran detectar, escalar, o alertar sobre ataques activos en tiempo real ni cercanos al tiempo real.</li>
+</ul>
+<h3 id="prevención-7">Prevención</h3>
+<ul>
+<li>Asegúrese de que todos los errores de inicio de sesión, de control de acceso y de validación de entradas de datos del lado del servidor se pueden registrar con suficiente contexto como para identificar cuentas sospechosas o maliciosas y mantenerlo durante el tiempo suficiente para permitir un posterior análisis forense.</li>
+<li>Asegúrese de que los registros se generen en un formato fácil de procesar por las herramientas de gestión de registros (SIEM).</li>
+<li>Asegúrese de que los datos de registros son correctamente codificados para prevenir inyecciones o ataques en el sistema de monitoreo o registros.</li>
+<li>Asegúrese de que las transacciones de alto valor poseen una traza de auditoria con controles de integridad para evitar la modificación o el borrado.</li>
+<li>Establezca o adopte un plan de respuesta y recuperación, tal como NIST 800-61r2 o posterior.</li>
+</ul>
+<h1 id="a102021--server-side-request-forgery-ssrf">A10:2021 – Server-Side Request Forgery (SSRF)</h1>
+<h2 id="server-side-request-forgery">Server-Side Request Forgery</h2>
+<p>El <strong>Server-Side Request Forgery (SSRF)</strong> es una vulnerabilidad de seguridad web que permite a un atacante causar que la aplicación del lado del servidor haga solicitudes a una ubicación no deseada.</p>
+<p>En un ataque típico de SSRF, el atacante podría hacer que el servidor hiciera una conexión con los servicios internos dentro de la infraestructura de su organización o de su propio backend. En otros casos, pueden ser capaces de forzar al servidor a conectarse a sistemas externos arbitrarios, exfiltrando datos al mismo o descargando malware.</p>
+<p>La explotación sobre la aplicación de destino suele deberse a una funcionalidad para importar datos de una URL, publicar datos en una URL o leer datos de otra manera de tal forma que se puede manipular. El atacante modifica las llamadas a esta funcionalidad suministrando una dirección completamente diferente o manipulando cómo se construye la URL. Cuando la solicitud manipulada va al servidor, el código del lado del servidor recoge la URL manipulada y efectua el acceso.</p>
+<p><img src="file:///c:\Users\julian.fonticoba\workspace\Apuntes-Certified_AppSec_Partitioner-CAP\assets\SSRF_Attack.svg" alt="SSRF"></p>
+<h3 id="ejemplo-de-código-vulnerable-2">Ejemplo de código vulnerable</h3>
+<p><strong>Javascript</strong></p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);
+<span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;axios&#x27;</span>);
+<span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>();
+<span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span>;
+
+<span class="hljs-comment">//Actualizar imagen de perfil desde una URL externa</span>
+app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/user/change-profile-img&#x27;</span>, <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) {
+  <span class="hljs-comment">//Se obtiene la URL pasada por el body de la petición</span>
+  <span class="hljs-keyword">const</span> imgUrl = req.<span class="hljs-property">body</span>.<span class="hljs-property">imgUrl</span>;
+  <span class="hljs-comment">//Realizamos un get a dicha URL sin validación previa</span>
+  <span class="hljs-keyword">const</span> imageReq = <span class="hljs-keyword">await</span> axios.<span class="hljs-title function_">get</span>(imgUrl);
+  <span class="hljs-comment">//Actualizamos la imagen de perfil</span>
+  user.<span class="hljs-title function_">updateProfileImage</span>(imageReq.<span class="hljs-property">data</span>);
+  res.<span class="hljs-title function_">send</span>(imageReq.<span class="hljs-property">data</span>);
+});
+</code></pre>
+<h3 id="prevención-8">Prevención</h3>
+<p>El principal medio de mitigación es <strong>permitir únicamente el acceso de salida a servidores externos y de confianza</strong>. Nunca se debe de permitir el acceso a redes <code>10.0.0.0</code> o <code>192.168.0.0</code>, por ejemplo.</p>
+<p>Para este tipo de mitigaciones es necesario tener en cuenta:</p>
+<ul>
+<li>No hacer comprobación por dominio, si no por IP.</li>
+<li>Validar posibles redirecciones.</li>
+<li>Tener cuidado con el DNS rebinding.</li>
+</ul>
+<p>Dado que validar estas direcciones es una tarea compleja, existen unas contramedidas a valorar antes de pasar a implementarla:</p>
+<ul>
+<li>Evaluar la necesidad de solicitudes dinámicas donde el usuario establece el dominio.</li>
+<li>Utilizar una allow-list donde establecer un conjunto finito de servidores/dominios que permitir.</li>
+</ul>
+<h3 id="referencias-6">Referencias</h3>
+<p><a href="https://portswigger.net/web-security/ssrf">Server-side request forgery (SSRF)</a></p>
+<p><a href="https://owasp.org/www-community/attacks/Server_Side_Request_Forgery">Server-side request forgery - OWASP</a></p>
+<h1 id="otras-categorias-importantes">Otras categorias importantes</h1>
+<h2 id="cross-site-request-forgery">Cross-Site Request Forgery</h2>
+<p>El <strong>Cross-Site Request Forgery (CSRF)</strong> (en español &quot;falsificación de petición en sitios cruzados&quot;) es una vulnerabilidad web que fuerza al navegador de la victima, a realizar una petición no deseada a la aplicación vulnerable.</p>
+<p>Esto permite que una acción sea llevada a cabo por un atacante en nombre de la victima y sea procesado por la aplicación web como una acción válida mas.</p>
+<p>Este tipo de ataques buscan que un usuario victima, completamente validado para hacer una acción, ejecute una acción indeseada por el propio usuario. Un ejemplo podría ser ejecutar una transferencia bancaria al atacante.</p>
+<p>El proceso para efectuar el ataque se divide en 3 pasos fundamentales:</p>
+<ul>
+<li>El atacante consigue que la víctima acceda a un sitio web malicioso</li>
+<li>El sitio web sirve a la victima un sitio falso que apunta al recurso vulnerable del sitio web (por ejemplo, realizar una transferencia bancaria), del cual no necesita en muchos casos iteracción del usuario.</li>
+<li>Por último, la victima, de forma totalmente transparente para el, realiza una petición al recurso del sitio web vulnerable en el que estaba previamente autenticado para realizar la acción deseada por el atacante.</li>
+</ul>
+<p><img src="file:///c:\Users\julian.fonticoba\workspace\Apuntes-Certified_AppSec_Partitioner-CAP\assets\csrf.png" alt="CSRF"></p>
+<h3 id="detección-3">Detección</h3>
+<h3 id="ejemplo-de-código-vulnerable-3">Ejemplo de código vulnerable</h3>
+<div class="markdown-alert markdown-alert-warning"><p class="markdown-alert-title"><svg class="octicon octicon-alert mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Warning</p><p>En este caso no existe un código vulnerable como tal, simplemente existe la ausencia de protecciones (descritas más abajo). El pedazo de código descrito a continuación muestra el código definido en la web maliciosa del atacante, que redirige a la vulnerable.</p>
+</div>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;https://sitio-malicioso.com/transfer&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;POST&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;hidden&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;amount&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;500&quot;</span>/&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;hidden&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;account&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;654585ABC&quot;</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+            <span class="hljs-variable language_">document</span>.<span class="hljs-property">forms</span>[<span class="hljs-number">0</span>].<span class="hljs-title function_">submit</span>();
+        </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<h3 id="prevención-9">Prevención</h3>
+<p>La forma más robusta para defendernos de ataques CSRF es el uso de tokens CSRF dentro de las solicitudes web.</p>
+<h4 id="tokens-anti-csrf">Tokens anti-CSRF</h4>
+<p>Los tokens anti-CSRF deben de cumplir ciertas características para que permitan prevenir estos ataques:</p>
+<ul>
+<li>Impredecibles con alta entropia (similar a cookies de sesión)</li>
+<li>Vinculado a la sesión del usuario</li>
+<li>Debe de ser validado previamente a efectuar la acción pertinente</li>
+</ul>
+<p>Este tipo de tokens deben de ser secretos, ya que de no serlo podrían ser accesibles por un atacante y manipulados para saltarse la medida defensiva.</p>
+<p>La forma más segura para enviar el token es que las aplicaciones transmitan los token CSRF dentro de un encabezado de solicitud personalizada. Esto presenta una defensa adicional contra un atacante que logra predecir o capturar la ficha de otro usuario, porque los navegadores normalmente no permiten que las cabeceras personalizadas se envíen cross-domain.</p>
+<p>Otro método, menos seguro pero escalable para cualquier tipo de aplicación, es transmitir el token al cliente dentro de un campo oculto del formulario HTML que se envia a través del POST.</p>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;hidden&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;csrf-token&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{anti-csrf}</span> /&gt;</span>
+</code></pre>
+<p>Para una seguridad adicional, el campo que contiene el token CSRF debe colocarse lo antes posible dentro del documento HTML, idealmente antes de cualquier campo de entrada no oculto. Esto mitiga varias técnicas en las que un atacante puede utilizar datos elaborados para manipular el documento HTML y capturar partes de su contenido.</p>
+<p>Finalmente, los tokens CSRF nunca deben enviarse como cookies.</p>
+<p>Por parte del servidor, los tokens anti-CSRF deben de ser validados verificando que la solicitud incluye un token que coincide con el valor que se almacenó en la sesión del usuario. Esta validación debe realizarse independientemente del método HTTP o tipo de contenido de la solicitud. Si la solicitud no contiene ningún símbolo, debe rechazarse de la misma manera que cuando esté presente un token inválido.</p>
+<h4 id="cookies-strict-samesite">Cookies Strict SameSite</h4>
+<p>Pese a que el método anterior solventa el problema, otro método para reducir el riesgo de la vulnerabilidad es establecer las cookies con la configuración <code>Strict SameSite</code>.</p>
+<pre><code>Set-Cookie: nombre=cookie; SameSite=Strict;
+</code></pre>
+<p>Dada esta configuración, las cookies sólo se crearán cuando el usuario esté en nuestra página navegando y la URL sea exactamente la misma para la que la cookie ha sido definida. Si el usuario accede a nuestra web desde un enlace externo, por ejemplo a través del email o de otra web, la cookie no saltará por no tratarse de una petición inicial lanzada desde nuestro dominio, por lo que no será posible utilizarla para autenticar la petición desde el sitio web malicioso al vulnerable.</p>
+<h3 id="referencias-7">Referencias</h3>
+<p><a href="https://www.welivesecurity.com/la-es/2015/04/21/vulnerabilidad-cross-site-request-forgery-csrf/">¿En qué consiste la vulnerabilidad Cross Site Request Forgery (CSRF)?</a></p>
+<p><a href="https://learn.snyk.io/lesson/csrf-attack/">Cross site request forgery (CSRF)</a></p>
+<p><a href="https://portswigger.net/web-security/csrf/preventing">Cómo prevenir las vulnerabilidades CSRF</a></p>
+<p><a href="https://developer.mozilla.org/es/docs/Web/HTTP/Headers/Set-Cookie">Set-Cookie</a></p>
+<h2 id="xml-external-entity-attack">XML External Entity attack</h2>
+<p>La <strong>inyección XML External Entity (XXE)</strong> es una vulnerabilidad web que permite a un atacante interferir en el normal funcionamiento del procesamiento de XMLs dentro de una aplicación.</p>
+<p>Esta vulnerabilidad existe normalmente en aplicaciones que utilizan XML como formato de transferencia de información/datos entre servidor y navegador. Las vulnerabilidades XXE surgen porque la especificación XML contiene varias características potencialmente peligrosas, y los parsers estándar soportan estas características incluso si normalmente no son utilizados por la aplicación.</p>
+<p>Las entidades externas XML son un tipo de entidad XML personalizada cuyos valores definidos se cargan desde fuera de la DTD en el que se declarany estas permiten definir una entidad basada en el contenido de una ruta de archivo o URL.</p>
+<p>Habitualmente el objetivo de este tipo de ataques es interactuar con el servidor y obtener información del mismo, como ver archivos e interactuar con ellos, haciendo uso de estas entidades externas.</p>
+<p><img src="file:///c:\Users\julian.fonticoba\workspace\Apuntes-Certified_AppSec_Partitioner-CAP\assets\xxe-injection.svg" alt="XXE"></p>
+<p>Los tipos de ataques que se pueden efectuar son:</p>
+<ul>
+<li>XXE para acceder a archivos: creando una entidad externa que referencia a un archivo, esperando su contenido. Para poder recibir el contenido desde el sistema de archivos del servidor, se debe de modificar el XML del siguiente modo:
+<ul>
+<li>Introducir o editar al elemento <code>DOCTYPE</code> que define una entidad externa con la ruta al archivo.</li>
+<li>Editar un valor en los datos del XML que devuelva la respuesta para hacer uso de la entidad externa.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">foo</span> [ <span class="hljs-meta">&lt;!ENTITY <span class="hljs-keyword">xxe</span> <span class="hljs-keyword">SYSTEM</span> <span class="hljs-string">&quot;file:///etc/passwd&quot;</span>&gt;</span> ]&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">stockCheck</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">productId</span>&gt;</span><span class="hljs-symbol">&amp;xxe;</span><span class="hljs-tag">&lt;/<span class="hljs-name">productId</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">stockCheck</span>&gt;</span>
+</code></pre>
+<ul>
+<li>XXE efectuando ataques SSRF: creando una entidad externa que se define a una URL a un sistema de backend. Para poder llamar a la URL debemos añadir una entidad externa que hará una solicitud HTTP al backend a un sistema interno de la organización:</li>
+</ul>
+<pre><code class="language-xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">foo</span> [ <span class="hljs-meta">&lt;!ENTITY <span class="hljs-keyword">xxe</span> <span class="hljs-keyword">SYSTEM</span> <span class="hljs-string">&quot;http://internal.vulnerable-website.com/&quot;</span>&gt;</span> ]&gt;</span>
+</code></pre>
+<ul>
+<li>
+<p>XXE para exfiltrar datos: enviando datos sensibles desde el servidor a un sistema que el atacante controla.</p>
+</li>
+<li>
+<p>XXE para detectar mensajes de error.</p>
+</li>
+</ul>
+<h3 id="detección-4">Detección</h3>
+<p>Si una aplicación web permite el envio de datos navegador-servidor usando XML, es propenso a este tipo de ataques. Haciendo uso de proxies como ZAP o BurpSuite, podemos manipular las peticiones inyectando entidades externas introduciendo payloads para comprobar si el sitio web es vulnerable.</p>
+<p>Existen otras herramientas que nos permiten probar la vulnerabilidad:</p>
+<ul>
+<li>XXEInjector</li>
+<li>XXExploiter</li>
+</ul>
+<h3 id="ejemplo-de-código-vulnerable-4">Ejemplo de código vulnerable</h3>
+<pre><code class="language-java"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doPost</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> ServletException, IOException {
+    <span class="hljs-type">String</span> <span class="hljs-variable">xmlInput</span> <span class="hljs-operator">=</span> request.getReader().readLine();
+
+    <span class="hljs-comment">//La clase DocumentBuilderFactory por defecto es vulnerable a XXE</span>
+    <span class="hljs-type">DocumentBuilderFactory</span> <span class="hljs-variable">factory</span> <span class="hljs-operator">=</span> DocumentBuilderFactory.newInstance();
+
+    <span class="hljs-type">DocumentBuilder</span> <span class="hljs-variable">builder</span> <span class="hljs-operator">=</span> factory.newDocumentBuilder();
+    <span class="hljs-type">Document</span> <span class="hljs-variable">document</span> <span class="hljs-operator">=</span> builder.parse(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputSource</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">StringReader</span>(xmlInput)));
+    <span class="hljs-type">NodeList</span> <span class="hljs-variable">items</span> <span class="hljs-operator">=</span> document.getElementsByTagName(<span class="hljs-string">&quot;item&quot;</span>);
+
+    <span class="hljs-keyword">if</span> (items.getLength() == <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">return</span>;
+    }
+
+    <span class="hljs-type">Element</span> <span class="hljs-variable">item</span> <span class="hljs-operator">=</span> (Element) items.item(<span class="hljs-number">0</span>);
+    <span class="hljs-type">String</span> <span class="hljs-variable">favourite</span> <span class="hljs-operator">=</span> item.getTextContent();
+    addToFavorites(favourite);
+    response.getWriter().printf(<span class="hljs-string">&quot;Favourite %s saved&quot;</span>, favourite);
+}
+</code></pre>
+<h3 id="prevención-10">Prevención</h3>
+<p>Si eres vulnerable a este tipo de ataques es porque el parser que estás utilizando permite la interpretación de entidades externas y está habilitado en tu desarrollo.</p>
+<p>Generalmente, la forma de resolver este tipo de vulnerabilidades pasa por utilizar parsers seguros y/o no permitir el uso de entidades externas y desactivar las propiedades inseguras de procesado de acceso externo (incluido el procesado del DTD).</p>
+<pre><code class="language-java"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doPost</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> ServletException, IOException {
+    <span class="hljs-type">String</span> <span class="hljs-variable">xmlInput</span> <span class="hljs-operator">=</span> request.getReader().readLine();
+
+    <span class="hljs-type">DocumentBuilderFactory</span> <span class="hljs-variable">factory</span> <span class="hljs-operator">=</span> DocumentBuilderFactory.newInstance();
+
+    <span class="hljs-comment">//Deshabilitamos la posibilidad de acceso via entidades externas</span>
+    factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, <span class="hljs-literal">true</span>);
+    factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, <span class="hljs-string">&quot;&quot;</span>);
+    factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, <span class="hljs-string">&quot;&quot;</span>);
+
+    <span class="hljs-type">DocumentBuilder</span> <span class="hljs-variable">builder</span> <span class="hljs-operator">=</span> factory.newDocumentBuilder();
+    <span class="hljs-type">Document</span> <span class="hljs-variable">document</span> <span class="hljs-operator">=</span> builder.parse(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputSource</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">StringReader</span>(xmlInput)));
+    <span class="hljs-type">NodeList</span> <span class="hljs-variable">items</span> <span class="hljs-operator">=</span> document.getElementsByTagName(<span class="hljs-string">&quot;item&quot;</span>);
+
+    <span class="hljs-keyword">if</span> (items.getLength() == <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">return</span>;
+    }
+
+    <span class="hljs-type">Element</span> <span class="hljs-variable">item</span> <span class="hljs-operator">=</span> (Element) items.item(<span class="hljs-number">0</span>);
+    <span class="hljs-type">String</span> <span class="hljs-variable">favourite</span> <span class="hljs-operator">=</span> item.getTextContent();
+    addToFavorites(favourite);
+    response.getWriter().printf(<span class="hljs-string">&quot;Favourite %s saved&quot;</span>, favourite);
+}
+</code></pre>
+<p>Otra opción pasa por utilizar otros lenguajes de transferencia de datos estructurales más modernos, como JSON.</p>
+<h3 id="referencias-8">Referencias</h3>
+<p><a href="https://portswigger.net/web-security/xxe">XML external entity (XXE) injection</a></p>
+<p><a href="https://owasp.org/www-community/vulnerabilities/XML_External_Entity_(XXE)_Processing">XML External Entity (XXE) Processing - OWASP</a></p>
+<p><a href="https://learn.snyk.io/lesson/xxe/">XML external entity injection (XXE)</a></p>
+<h2 id="insecure-file-uploads-local-file-inclusion--path-traversal">Insecure File Uploads (Local File Inclusion &amp; Path Traversal)</h2>
+<p>Las <strong>vulnerabilidades en la carga de archivos</strong> permiten a un atacante subir archivos a la web sin una validación correcta, como el nombre, extensión, tamaño o contenido. No hacer una correcta restricción de estos elementos podría permitir subir ficheros potencialmente peligrosos que podrian llegar a causar una ejecución de código remoto en el servidor o introducir malware.</p>
+<p>El impacto de este tipo de vulnerabilidades depende de diferentes factores: el archivo no se valida correctamente en su carga y/o no se ponen las restricciones correctas una vez se ha subido por completo.</p>
+<p>En muchas ocasiones, este tipo de vulnerabilidades surgen porqye los desarrolladores no tienen en cuenta ciertas restricciones y validaciones a tomar. Por ejemplo, pueden crear una lista negra para tipos de archivos peligrosos, pero no tienen en cuenta las discrepancias al comprobar las extensiones de archivo, o el sitio web puede intentar comprobar el tipo de archivo verificando propiedades que pueden ser fácilmente manipuladas por un atacante usando herramientas como BurpSuite o ZAP.</p>
+<h3 id="detección-5">Detección</h3>
+<p>En el peor de los casos, el tipo del archivo no se valida correctamente, y la configuración del servidor permite ciertos tipos de archivos (como .php y .jsp) para ser ejecutado como código. En este caso, un atacante podría potencialmente subir un archivo de código del lado del servidor que funciona como una shell web, concediéndole el control total sobre el servidor.</p>
+<p>Si el nombre de archivo no se valida correctamente, esto podría permitir a un atacante sobrescribir archivos críticos simplemente cargando un archivo con el mismo nombre. Si el servidor también es vulnerable a la traversal de directorios, esto podría significar que los atacantes pueden incluso subir archivos a lugares no previstos.</p>
+<p>Si no se valida correctamente el tamaño del fichero podria provocarse un DoS y, en caso de no validarse el contenido podria introducirse malware o codigo interpretable para ser ejecutado a posteriori.</p>
+<h3 id="protecciones-débiles">Protecciones débiles</h3>
+<h4 id="listas-negras-de-extensiones">Listas negras de extensiones</h4>
+<p>Uno de los métodos más usados es usar listas negras para las extensiones de archivos, pero no es la más correcta. Pese a que es una forma de restringir ciertas subidas de archivos, existen ciertas formas de saltarse estes filtros:</p>
+<ul>
+<li>Encontrar extensiones olvidadas que se pueden ejecutar en el lado del servidor: <code>.php5</code>, <code>.swf</code>, <code>.shtml</code>...</li>
+<li>Encontrar fallos de configuración cuando el servidor analiza archivos con dobles extensiones o las ejecuta proporcionando un extensión después de un delimitador:
+<ul>
+<li>Ejemplo: En Apache, un archivo php podría ser ejecutado usando el doble técnica de extensión como <code>shell.php.jpg</code></li>
+</ul>
+</li>
+<li>Cambiando extensiones a mayúsculas: <code>shell.PHp3</code></li>
+<li>Uso de caracteres de control como carácter nulo (0x00) después de un extensión prohibida</li>
+</ul>
+<h4 id="listas-blancas-de-extensiones">Listas blancas de extensiones</h4>
+<p>Pese que aparentemente es un método menos peligroso, comparte ciertos riesgos con las listas negras:</p>
+<ul>
+<li>La lista de extensiones debe de revisarse independientemente. Si se acepta por ejemplo la extensión <code>.shtml</code> se podría incurrir en un ataque SSI, el cual permite la explotación de una web aplicación inyectando scripts en páginas HTML o ejecutando arbitrariamente códigos de forma remota.</li>
+<li>Las técnicas de la doble extensión o transformación de caracteres en extensiones también son un riesgo en este tipo de casos.</li>
+</ul>
+<h4 id="validación-de-la-cabecera-content-type">Validación de la cabecera Content-Type</h4>
+<p>La entidad de Content-Type en la cabecera de la solicitud indica el tipo de contenido del mensaje, por lo que efectivamente podría ayudarnos a utilizar esta cabecera para reconocer un archivo como válido. Sin embargo, es posible eludir esta protección cambiando este parámetro en la cabecera de solicitud usando un proxy web, como BurpSuite o ZAP.</p>
+<h4 id="usar-un-detector-de-tipo-de-archivo">Usar un detector de tipo de archivo</h4>
+<p>A veces las aplicaciones web intencional o involuntariamente utilizan algunos funciones (o APIs) para comprobar los tipos de archivo con el fin de procesarlos de forma más segura. Así, cuando una aplicación redimensiona un archivo de imagen, puede sólo mostrar un mensaje de error cuando los archivos no son los esperados, antes de salvarlos en el servidor:</p>
+<ul>
+<li>Si se verifican los metadatos del fichero, podría insertarse el código malicioso después de la cabecera con los metadatos.</li>
+<li>Insertar código en las secciones que no tienen el efecto en el archivo principal.</li>
+<li>Los datos insertados pueden ser ofuscados o codificados si la aplicación detecta un código malicioso utilizando patrones o firmas</li>
+<li>Archivo cargado se puede elaborar para crear un código malicioso en caso de estar comprimido por la aplicación</li>
+</ul>
+<h3 id="ejemplo-de-código-vulnerable-5">Ejemplo de código vulnerable</h3>
+<pre><code class="language-javascript">app.<span class="hljs-title function_">post</span>(<span class="hljs-string">&quot;/avatars/upload&quot;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> {
+    <span class="hljs-keyword">let</span> avatar = req.<span class="hljs-property">files</span>.<span class="hljs-property">file</span>;
+    <span class="hljs-keyword">let</span> filename = avatar.<span class="hljs-property">name</span>;
+
+    fs.<span class="hljs-title function_">writeFile</span>(<span class="hljs-string">`static/avatars/<span class="hljs-subst">${user_id}</span>/<span class="hljs-subst">${filename}</span>`</span>, avatar.<span class="hljs-property">data</span>, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (err)
+            res.<span class="hljs-title function_">status</span>(<span class="hljs-number">500</span>).<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;Error uploading avatar&#x27;</span>);
+        <span class="hljs-keyword">else</span>
+            res.<span class="hljs-title function_">json</span>({ <span class="hljs-attr">URL</span>: <span class="hljs-string">`static/avatars/<span class="hljs-subst">${user_id}</span>/<span class="hljs-subst">${filename}</span>`</span> });
+    });
+});
+</code></pre>
+<h3 id="recomendación">Recomendación</h3>
+<p>Algunos consejos para una buena validación y restricción de carga de ficheros son:</p>
+<ul>
+<li>Implementar allow-lists como primer punto de filtrado (ya vimos que no eran lo más adecuado, pero son mejores que las negras)</li>
+<li>Generar el nombre de fichero aleatoriamente a la hora de subirlo, de forma impredecible</li>
+<li>No delegar en el usuario establecer la ruta donde subirlo</li>
+<li>Los archivos cargados no deben ser de acceso público a menos que realmente sea necesario. Incluso entonces, trate de implementar la autorización adecuada para asegurar que sólo las personas adecuadas tengan acceso a ellos</li>
+<li>Usar librerias seguras para subir ficheros</li>
+</ul>
+<p>Para el ejemplo propuesto, una mitigación posible sería:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> allowedExtensions = [<span class="hljs-string">&#x27;png&#x27;</span>, <span class="hljs-string">&#x27;jpg&#x27;</span>, <span class="hljs-string">&#x27;gif&#x27;</span>] <span class="hljs-comment">//Definimos una lista blanca</span>
+<span class="hljs-keyword">const</span> maxFileSizeInBytes = <span class="hljs-number">10</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span>; <span class="hljs-comment">//Definimos tamaño maximo: 10 MB</span>
+
+app.<span class="hljs-title function_">post</span>(<span class="hljs-string">&quot;/avatars/upload&quot;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> {
+    <span class="hljs-keyword">let</span> avatar = req.<span class="hljs-property">files</span>.<span class="hljs-property">file</span>;
+    <span class="hljs-keyword">let</span> extension = path.<span class="hljs-title function_">extname</span>(avatar.<span class="hljs-property">name</span>).<span class="hljs-title function_">substr</span>(<span class="hljs-number">1</span>)
+
+    <span class="hljs-keyword">if</span> (!allowedExtensions.<span class="hljs-title function_">includes</span>(extension)) <span class="hljs-comment">//Validamos que la extensión sea correcta</span>
+        <span class="hljs-keyword">return</span>
+    
+    <span class="hljs-keyword">if</span> (avatar.<span class="hljs-property">data</span>.<span class="hljs-property">length</span> &gt; maxFileSizeInBytes) { <span class="hljs-comment">//Validamos que el tamaño sea correcto</span>
+        <span class="hljs-keyword">return</span>
+    }
+
+    <span class="hljs-comment">//Generamos aleatoriamente un nombre para el fichero</span>
+    <span class="hljs-keyword">let</span> filename = <span class="hljs-string">`<span class="hljs-subst">${shortid.generate()}</span>.<span class="hljs-subst">${extension}</span>`</span>
+
+    <span class="hljs-comment">//Guardamos el fichero</span>
+    fs.<span class="hljs-title function_">writeFile</span>(<span class="hljs-string">`static/avatars/<span class="hljs-subst">${user_id}</span>/<span class="hljs-subst">${filename}</span>`</span>, avatar.<span class="hljs-property">data</span>, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (err)
+            res.<span class="hljs-title function_">status</span>(<span class="hljs-number">500</span>).<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;Error uploading avatar&#x27;</span>);
+        <span class="hljs-keyword">else</span>
+            res.<span class="hljs-title function_">json</span>({ <span class="hljs-attr">URL</span>: <span class="hljs-string">`static/avatars/<span class="hljs-subst">${user_id}</span>/<span class="hljs-subst">${filename}</span>`</span> });
+    });
+});
+</code></pre>
+<h4 id="cabecera-x-content-type-options">Cabecera X-Content-Type-Options</h4>
+<p>Evita que el navegador interprete archivos como MIME diferentes al especificado en la cabecera <code>Content-Type</code>, protegiendo contra ataques como MIME sniffing.</p>
+<pre><code class="language-http"><span class="hljs-attribute">X-Content-Type-Options</span><span class="hljs-punctuation">: </span>nosniff
+</code></pre>
+<h3 id="referencias-9">Referencias</h3>
+<p><a href="https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload">Unrestricted File Upload</a></p>
+<p><a href="https://learn.snyk.io/lesson/unrestricted-file-upload/">Unrestricted File Upload - Snyk</a></p>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>
